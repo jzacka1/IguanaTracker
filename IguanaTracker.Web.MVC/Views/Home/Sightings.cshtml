@@ -1,0 +1,57 @@
+﻿@model IEnumerable<IguanaTracker.Data.Data.Iguana>
+
+@{
+	ViewData["Title"] = "Sightings";
+}
+
+<h1>Sightings</h1>
+
+@Html.ActionLink("Add Sighting", "AddSighting", "Home")
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.DatePosted)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Image)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.City)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.State)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Description)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.DatePosted)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Image)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.City)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.State)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IpAddress)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

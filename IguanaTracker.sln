@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IguanaTracker.API", "IguanaTracker.API\IguanaTracker.API.csproj", "{E2E8C10E-DC61-4047-98FF-C56AC4EDD978}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IguanaTracker.Data", "IguanaTracker.Data\IguanaTracker.Data.csproj", "{80EBD827-DEAC-41F8-A30C-2D1AEBBADE22}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IguanaTracker.BL", "IguanaTracker.BL\IguanaTracker.BL.csproj", "{9D5553A1-4BEA-4330-9394-04B1A9647C43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IguanaTracker.Angular", "IguanaTracker.Angular\IguanaTracker.Angular.csproj", "{B201546E-89C0-4A40-ABE3-0BCA3B31EF4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IguanaTracker.Web.MVC", "IguanaTracker.Web.MVC\IguanaTracker.Web.MVC.csproj", "{456D8200-BD9E-493C-B3E0-7E38D927D682}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2E8C10E-DC61-4047-98FF-C56AC4EDD978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2E8C10E-DC61-4047-98FF-C56AC4EDD978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2E8C10E-DC61-4047-98FF-C56AC4EDD978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2E8C10E-DC61-4047-98FF-C56AC4EDD978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80EBD827-DEAC-41F8-A30C-2D1AEBBADE22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80EBD827-DEAC-41F8-A30C-2D1AEBBADE22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80EBD827-DEAC-41F8-A30C-2D1AEBBADE22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80EBD827-DEAC-41F8-A30C-2D1AEBBADE22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5553A1-4BEA-4330-9394-04B1A9647C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5553A1-4BEA-4330-9394-04B1A9647C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5553A1-4BEA-4330-9394-04B1A9647C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5553A1-4BEA-4330-9394-04B1A9647C43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B201546E-89C0-4A40-ABE3-0BCA3B31EF4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B201546E-89C0-4A40-ABE3-0BCA3B31EF4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B201546E-89C0-4A40-ABE3-0BCA3B31EF4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B201546E-89C0-4A40-ABE3-0BCA3B31EF4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{456D8200-BD9E-493C-B3E0-7E38D927D682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{456D8200-BD9E-493C-B3E0-7E38D927D682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{456D8200-BD9E-493C-B3E0-7E38D927D682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{456D8200-BD9E-493C-B3E0-7E38D927D682}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C074BD68-4496-4E0C-9C2E-A26DE05EF712}
+	EndGlobalSection
+EndGlobal
