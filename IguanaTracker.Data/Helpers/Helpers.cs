@@ -25,5 +25,10 @@ namespace IguanaTracker.Data.Helpers
 
 			return fileBytes;
 		}
+
+		//Creates a string to include bytes to show image.
+		public static string formatBytesToImage(byte[] imageBytes){
+			return "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
+		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
@@ -17,7 +18,10 @@ namespace IguanaTracker.Data.Data
 
         public int Id { get; set; }
         public DateTime DatePosted { get; set; }
+
+        [Required]
         public byte[] Image { get; set; }
+
         [NotMapped]
         public IFormFile _ImageData {
             get { return _imageData; }
