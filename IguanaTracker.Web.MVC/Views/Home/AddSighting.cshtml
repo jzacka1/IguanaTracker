@@ -4,6 +4,22 @@
     ViewData["Title"] = "AddSighting";
 }
 
+<script type="text/javascript">
+			navigator.geolocation.getCurrentPosition(showPosition, positionError);
+
+			function showPosition(position) {
+				var coordinates = position.coords;
+
+				//Add position coordinates for the location of iguanas
+				$("#Latitude").val(coordinates.latitude);
+				$("#Longitude").val(coordinates.longitude);
+			}
+
+			function positionError(position) {
+				alert("Oops!  Error:  " + position.code);
+			}
+</script>
+
 <h1>Add Sighting</h1>
 
 <h4>Iguana</h4>
@@ -36,6 +52,8 @@
 			<div class="form-group">
 				<input type="submit" value="Create" class="btn btn-primary" />
 			</div>
+			@Html.HiddenFor(m => m.Latitude)
+			@Html.HiddenFor(m => m.Longitude)
 		</form>
 	</div>
 </div>
