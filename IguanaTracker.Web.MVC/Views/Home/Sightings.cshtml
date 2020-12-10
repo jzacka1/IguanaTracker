@@ -45,7 +45,7 @@
 					<img src="@Helpers.formatBytesToImage(item.Image)" width="400" alt="iguana_@item.Id"/>
 				</td>
 				<td>
-					<iframe src="https://maps.google.com/maps?q=26.40082990,-80.19865400&z=15&output=embed" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+					<iframe src="@String.Format("https://maps.google.com/maps?q={0},{1}&z=15&output=embed", item.Latitude, item.Longitude)" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.City)
