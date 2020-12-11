@@ -43,10 +43,6 @@ namespace IguanaTracker.Data.Data
 
                 entity.Property(e => e.Description).IsUnicode(false);
 
-                entity.Property(e => e.IpAddress)
-                    .IsUnicode(false)
-                    .HasColumnName("IP_Address");
-
                 entity.Property(e => e.State)
                     .IsRequired()
                     .HasMaxLength(50)

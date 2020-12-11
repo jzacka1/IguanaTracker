@@ -35,7 +35,6 @@ namespace IguanaTracker.Data.Data
         public decimal Latitude { get; set; }
         [Column(TypeName = "decimal(11,9)")]
         public decimal Longitude { get; set; }
-        public string IpAddress { get; set; }
         public string Description { get; set; }
     }
 }
