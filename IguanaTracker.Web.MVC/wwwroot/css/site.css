@@ -76,3 +76,17 @@ body {
 .stepsImages {
     margin-bottom: 40px;
 }
+
+.stepsImages img {
+    margin-bottom: 80px;
+}
+
+/*Sightings
+-------------------------------------------------- */
+.sighting {
+    margin-top: 50px;
+}
+
+.sighting img {
+    vertical-align: top;
+}
