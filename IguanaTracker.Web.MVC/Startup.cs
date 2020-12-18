@@ -31,7 +31,7 @@ namespace IguanaTracker.Web.MVC
 
 			services.AddDbContext<FloridaIguanaTrackerDBContext>(options =>
 				options.UseSqlServer(
-					Configuration.GetConnectionString("DefaultConnection")));
+					Configuration.GetConnectionString("DefaultLocalConnection")));
 
 			services.AddTransient<IIguanaTrackerService, IguanaTrackerService>();
 		}
@@ -60,7 +60,8 @@ namespace IguanaTracker.Web.MVC
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					defaults: new { controller = "Home"},
+					pattern: "{action=Index}/{id?}");
 			});
 		}
 	}

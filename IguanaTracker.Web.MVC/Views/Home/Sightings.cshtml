@@ -13,10 +13,13 @@
 @foreach (var item in Model.Reverse())
 {
 	<hr />
-	<div class="sighting">
+	<div id="iguana_@item.Id" class="sighting">
 		<div>
 			<img class="img-fluid" role="img" aria-label="Uploaded image" src="@Helpers.formatBytesToImage(item.Image)" width="500" alt="iguana_@item.Id" />
-			<iframe aria-label="Google map pinpointing location of iguana sighting." src="@String.Format("https://maps.google.com/maps?q={0},{1}&z=15&output=embed", item.Latitude, item.Longitude)" width="500" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+			<div id="map-container-google-1" class="map-container" style="width: 500px; height: 350px;">
+				<iframe aria-label="Google map pinpointing location of iguana sighting." src="@String.Format("https://maps.google.com/maps?q={0},{1}&z=15&output=embed", item.Latitude, item.Longitude)" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+			</div>
+
 		</div>
 		<div>
 			<div>

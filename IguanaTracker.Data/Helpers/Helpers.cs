@@ -5,22 +5,33 @@ using System.IO;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 
 namespace IguanaTracker.Data.Helpers
 {
 	public class Helpers
 	{
 		//Convert image file to byte array
-		public static byte[] ImageToByteArray(IFormFile img){
+		public static async Task<byte[]> ImageToByteArrayAsync(IFormFile img){
 			byte[] fileBytes = null;
 
-			if (img.Length > 0)
+			if (img.Length > 0 || img != null)
 			{
 				using (var ms = new MemoryStream())
 				{
-					img.CopyTo(ms);
-					fileBytes = ms.ToArray();
+					try{
+						img.CopyTo(ms);
+						//await img.CopyToAsync(ms);
+						await ms.WriteAsync(fileBytes, 0, fileBytes.Length);
+						//fileBytes = ms.ToArray();
+					}
+					catch(Exception exception){
+
+					}
 				}
+			}
+			else{
+				return null;
 			}
 
 			return fileBytes;

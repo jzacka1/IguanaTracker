@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IguanaTracker.BL.Services.Interfaces
 {
@@ -8,7 +9,8 @@ namespace IguanaTracker.BL.Services.Interfaces
 	{
 		void Add(T item);
 
-		List<T> GetAll();
+		Task<List<T>> GetAll();
+		Task<List<T>> GetAmount(int count);
 		T GetById(int id);
 		List<T> GetByCity(string city);
 		List<T> GetByDate(DateTime date);

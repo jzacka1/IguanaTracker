@@ -27,9 +27,9 @@ namespace IguanaTracker.Web.MVC.Controllers
 			_hostEnvironment = hostEnvironment;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
-			return View();
+			return View(await _iguanaTrackerService.GetAmount(4));
 		}
 
 		public IActionResult About(){
@@ -47,10 +47,9 @@ namespace IguanaTracker.Web.MVC.Controllers
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 
-		public IActionResult Sightings()
+		public async Task<IActionResult> Sightings()
 		{
-			List<Iguana> iguanaList = _iguanaTrackerService.GetAll();
-			return View(iguanaList);
+			return View(await _iguanaTrackerService.GetAll());
 		}
 
 		public IActionResult AddSighting(){

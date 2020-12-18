@@ -24,9 +24,9 @@ namespace IguanaTracker.API.Controllers
 
 		// GET: api/<HomeController>
 		[HttpGet]
-		public List<Iguana> Get()
+		public async Task<List<Iguana>> Get()
 		{
-			return _iguanaTracker.GetAll();
+			return await _iguanaTracker.GetAll();
 			//return new string[] { "value1", "value2" };
 		}
 

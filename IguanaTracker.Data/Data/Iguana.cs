@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading.Tasks;
 
 #nullable disable
 
@@ -26,7 +27,10 @@ namespace IguanaTracker.Data.Data
         public IFormFile _ImageData {
             get { return _imageData; }
             set {
-                Image = Helpers.Helpers.ImageToByteArray((IFormFile)value);
+                new Task(async () => 
+                {
+                    Image = await Helpers.Helpers.ImageToByteArrayAsync((IFormFile)value);
+                }).Start();
             }
         }
         public string City { get; set; }

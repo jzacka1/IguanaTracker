@@ -1,9 +1,11 @@
 ﻿using IguanaTracker.BL.Services.Interfaces;
 using IguanaTracker.Data.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IguanaTracker.BL.Services
 {
@@ -13,10 +15,10 @@ namespace IguanaTracker.BL.Services
 
 		}
 
-		public void Add(Iguana item)
+		public async void Add(Iguana item)
 		{
 			db.Add(item);
-			db.SaveChanges();
+			await db.SaveChangesAsync();
 		}
 
 		public void DeleteById(int id)
@@ -26,9 +28,13 @@ namespace IguanaTracker.BL.Services
 			db.SaveChanges();
 		}
 
-		public List<Iguana> GetAll()
+		public async Task<List<Iguana>> GetAll()
 		{
-			return db.Iguanas.ToList<Iguana>();
+			return await db.Iguanas.ToListAsync<Iguana>();
+		}
+
+		public async Task<List<Iguana>> GetAmount(int count){
+			return await db.Iguanas.Take(count).ToListAsync<Iguana>();
 		}
 
 		public List<Iguana> GetByCity(string city)
