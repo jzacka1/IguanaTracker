@@ -24,15 +24,15 @@
 			}
 		}
 	</ol>
-	<div class="carousel-inner pb-8">
+	<div class="carousel-inner pb-6">
 		@{
 			active = "active";
 
 			foreach (var item in Model)
 			{
-				<div class="carousel-item pb-8 @active">
-					<div class="card pb-4" style="width: auto;">
-						<img class="card-img-top" role="img" aria-label="Uploaded image" src="@Helpers.formatBytesToImage(item.Image)" width="50" alt="iguana_@item.Id" />
+				<div class="carousel-item pb-6 @active">
+					<div class="card pb-4 mx-auto" style="width: auto; max-width: 50rem;">
+						<img class="card-img-top img-fluid" role="img" aria-label="Uploaded image" src="@Helpers.formatBytesToImage(item.Image)" width="20" alt="iguana_@item.Id" />
 						@*<div id="map-container-google-1" class="map-container">
 							<iframe aria-label="Google map pinpointing location of iguana sighting." src="@String.Format("https://maps.google.com/maps?q={0},{1}&z=15&output=embed", item.Latitude, item.Longitude)" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 						</div>*@
@@ -48,7 +48,7 @@
 								@Html.DisplayFor(modelItem => item.State)
 							</div>
 							<p class="card-text">@item.Description</p>
-							<a class="btn btn-primary col-md-2 offset-md-1" href="/Sightings#iguana_@item.Id" style="z-index: 2;">Go to sightings</a>
+							<a class="btn btn-primary col-md-3 offset-md-1" href="/Sightings#iguana_@item.Id" style="z-index: 2;">Go to sightings</a>
 						</div>
 					</div>
 				</div>

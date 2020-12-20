@@ -22,6 +22,8 @@ namespace IguanaTracker.Web.MVC
 			Configuration = configuration;
 		}
 
+		private bool isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+
 		public IConfiguration Configuration { get; }
 
 		// This method gets called by the runtime. Use this method to add services to the container.
@@ -29,9 +31,14 @@ namespace IguanaTracker.Web.MVC
 		{
 			services.AddControllersWithViews();
 
-			services.AddDbContext<FloridaIguanaTrackerDBContext>(options =>
-				options.UseSqlServer(
-					Configuration.GetConnectionString("DefaultLocalConnection")));
+			if(isDevelopment)
+				services.AddDbContext<FloridaIguanaTrackerDBContext>(options =>
+					options.UseSqlServer(
+						Configuration.GetConnectionString("DefaultLocalConnection")));
+			else
+				services.AddDbContext<FloridaIguanaTrackerDBContext>(options =>
+					options.UseSqlServer(
+						Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddTransient<IIguanaTrackerService, IguanaTrackerService>();
 		}

@@ -1,7 +1,13 @@
 {
   "dependencies": {
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "DefaultLocalConnection",
+      "suggestion": "true",
+      "ignored": "true"
+    },
     "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/iguanatrackerserver1/databases/FloridaIguanaTrackerDB",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/iguanatrackerserver1/databases/FloridaIguanaTrackerAzureDB",
       "type": "mssql.azure",
       "connectionId": "DefaultConnection",
       "secretStore": "AzureAppSettings"
