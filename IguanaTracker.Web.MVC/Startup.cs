@@ -31,6 +31,8 @@ namespace IguanaTracker.Web.MVC
 		{
 			services.AddControllersWithViews();
 
+			services.AddResponseCaching();
+
 			if(isDevelopment)
 				services.AddDbContext<FloridaIguanaTrackerDBContext>(options =>
 					options.UseSqlServer(
@@ -56,6 +58,9 @@ namespace IguanaTracker.Web.MVC
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
+
+			app.UseResponseCaching();
+
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 

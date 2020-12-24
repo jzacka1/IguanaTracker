@@ -27,15 +27,18 @@ namespace IguanaTracker.Web.MVC.Controllers
 			_hostEnvironment = hostEnvironment;
 		}
 
+		[ResponseCache(Duration = 30)]
 		public async Task<IActionResult> Index()
 		{
 			return View(await _iguanaTrackerService.GetAmount(4));
 		}
 
+		[ResponseCache(Duration = 30)]
 		public IActionResult About(){
 			return View();
 		}
 
+		[ResponseCache(Duration = 30)]
 		public IActionResult Privacy()
 		{
 			return View();
@@ -47,11 +50,13 @@ namespace IguanaTracker.Web.MVC.Controllers
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 
+		[ResponseCache(Duration = 30)]
 		public async Task<IActionResult> Sightings()
 		{
 			return View(await _iguanaTrackerService.GetAll());
 		}
 
+		[ResponseCache(Duration = 30)]
 		public IActionResult AddSighting(){
 			return View();
 		}

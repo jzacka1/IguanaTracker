@@ -27,10 +27,11 @@ namespace IguanaTracker.Data.Data
         public IFormFile _ImageData {
             get { return _imageData; }
             set {
-                new Task(async () => 
-                {
-                    Image = await Helpers.Helpers.ImageToByteArrayAsync((IFormFile)value);
-                }).Start();
+                //new Task(async () => 
+                //{
+                //    Image = Helpers.Helpers.ImageToByteArrayAsync((IFormFile)value);
+                //}).Start();
+                Image = Helpers.Helpers.ImageToByteArrayAsync((IFormFile)value);
             }
         }
         public string City { get; set; }

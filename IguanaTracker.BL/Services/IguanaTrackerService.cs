@@ -15,10 +15,10 @@ namespace IguanaTracker.BL.Services
 
 		}
 
-		public async void Add(Iguana item)
+		public void Add(Iguana item)
 		{
 			db.Add(item);
-			await db.SaveChangesAsync();
+			db.SaveChanges();
 		}
 
 		public void DeleteById(int id)

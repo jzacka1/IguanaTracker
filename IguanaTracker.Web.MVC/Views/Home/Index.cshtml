@@ -13,56 +13,61 @@
 	<h3>If you found iguanas in Florida, send a sighting report here.</h3>
 </div>
 
-<div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-	<ol class="carousel-indicators">
-		@{
-			for (int i = 0; i < count; i++)
-			{
-				<li data-target="#carouselIndicators" data-slide-to="@i" class="@active" style="background-color: rgba(70, 70, 70, 0.25);"></li>
+@{ 
+if (Model.Count() > 0)
+{
+	<div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			@{
+				for (int i = 0; i < count; i++)
+				{
+					<li data-target="#carouselIndicators" data-slide-to="@i" class="@active" style="background-color: rgba(70, 70, 70, 0.25);"></li>
 
-				active = "";
+					active = "";
+				}
 			}
-		}
-	</ol>
-	<div class="carousel-inner pb-6">
-		@{
-			active = "active";
+		</ol>
+		<div class="carousel-inner pb-6">
+			@{
+				active = "active";
 
-			foreach (var item in Model)
-			{
-				<div class="carousel-item pb-6 @active">
-					<div class="card pb-4 mx-auto" style="width: auto; max-width: 50rem;">
-						<img class="card-img-top img-fluid" role="img" aria-label="Uploaded image" src="@Helpers.formatBytesToImage(item.Image)" width="20" alt="iguana_@item.Id" />
-						@*<div id="map-container-google-1" class="map-container">
-							<iframe aria-label="Google map pinpointing location of iguana sighting." src="@String.Format("https://maps.google.com/maps?q={0},{1}&z=15&output=embed", item.Latitude, item.Longitude)" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-						</div>*@
-						<div class="card-body">
-							<div>
-								<label><b>Date Posted:</b></label>
+				foreach (var item in Model)
+				{
+					<div class="carousel-item pb-6 @active">
+						<div class="card pb-4 mx-auto" style="width: auto; max-width: 50rem;">
+							<img class="card-img-top img-fluid" role="img" aria-label="Uploaded image" src="@Helpers.formatBytesToImage(item.Image)" width="20" alt="iguana_@item.Id" />
+							@*<div id="map-container-google-1" class="map-container">
+								<iframe aria-label="Google map pinpointing location of iguana sighting." src="@String.Format("https://maps.google.com/maps?q={0},{1}&z=15&output=embed", item.Latitude, item.Longitude)" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+							</div>*@
+							<div class="card-body">
+								<div>
+									<label><b>Date Posted:</b></label>
 
-								@Html.DisplayFor(modelItem => item.DatePosted)
+									@Html.DisplayFor(modelItem => item.DatePosted)
+								</div>
+								<div>
+									<label><b>City, State:</b></label>
+									@Html.DisplayFor(modelItem => item.City),
+									@Html.DisplayFor(modelItem => item.State)
+								</div>
+								<p class="card-text">@item.Description</p>
+								<a class="btn btn-primary col-md-3 offset-md-1" href="/Sightings#iguana_@item.Id" style="z-index: 2;">Go to sightings</a>
 							</div>
-							<div>
-								<label><b>City, State:</b></label>
-								@Html.DisplayFor(modelItem => item.City),
-								@Html.DisplayFor(modelItem => item.State)
-							</div>
-							<p class="card-text">@item.Description</p>
-							<a class="btn btn-primary col-md-3 offset-md-1" href="/Sightings#iguana_@item.Id" style="z-index: 2;">Go to sightings</a>
 						</div>
 					</div>
-				</div>
 
-				active = "";
+					active = "";
+				}
 			}
-		}
+		</div>
+		<a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
 	</div>
-	<a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
-	</a>
-	<a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
-	</a>
-</div>
+	}
+}
