@@ -12,6 +12,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Azure;
+using Azure.Storage.Queues;
+using Azure.Storage.Blobs;
+using Azure.Core.Extensions;
 
 namespace IguanaTracker.Web.MVC
 {
@@ -33,16 +37,26 @@ namespace IguanaTracker.Web.MVC
 
 			services.AddResponseCaching();
 
-			if(isDevelopment)
+			if (isDevelopment){
 				services.AddDbContext<FloridaIguanaTrackerDBContext>(options =>
 					options.UseSqlServer(
 						Configuration.GetConnectionString("DefaultLocalConnection")));
-			else
+
+				services.AddAzureClients(builder =>
+				{
+					builder.AddBlobServiceClient(Configuration["ConnectionStrings:AzureStorageLocalConnection:blob"], preferMsi: true);
+					builder.AddQueueServiceClient(Configuration["ConnectionStrings:AzureStorageLocalConnection:queue"], preferMsi: true);
+				});
+			}
+			else{
 				services.AddDbContext<FloridaIguanaTrackerDBContext>(options =>
 					options.UseSqlServer(
 						Configuration.GetConnectionString("DefaultConnection")));
+			}
 
 			services.AddTransient<IIguanaTrackerService, IguanaTrackerService>();
+
+			
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +89,31 @@ namespace IguanaTracker.Web.MVC
 					defaults: new { controller = "Home"},
 					pattern: "{action=Index}/{id?}");
 			});
+		}
+	}
+	internal static class StartupExtensions
+	{
+		public static IAzureClientBuilder<BlobServiceClient, BlobClientOptions> AddBlobServiceClient(this AzureClientFactoryBuilder builder, string serviceUriOrConnectionString, bool preferMsi)
+		{
+			if (preferMsi && Uri.TryCreate(serviceUriOrConnectionString, UriKind.Absolute, out Uri serviceUri))
+			{
+				return builder.AddBlobServiceClient(serviceUri);
+			}
+			else
+			{
+				return builder.AddBlobServiceClient(serviceUriOrConnectionString);
+			}
+		}
+		public static IAzureClientBuilder<QueueServiceClient, QueueClientOptions> AddQueueServiceClient(this AzureClientFactoryBuilder builder, string serviceUriOrConnectionString, bool preferMsi)
+		{
+			if (preferMsi && Uri.TryCreate(serviceUriOrConnectionString, UriKind.Absolute, out Uri serviceUri))
+			{
+				return builder.AddQueueServiceClient(serviceUri);
+			}
+			else
+			{
+				return builder.AddQueueServiceClient(serviceUriOrConnectionString);
+			}
 		}
 	}
 }

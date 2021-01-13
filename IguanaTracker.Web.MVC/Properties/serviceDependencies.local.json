@@ -2,6 +2,17 @@
   "dependencies": {
     "secrets1": {
       "type": "secrets.user"
+    },
+    "storage1": {
+      "type": "storage.emulator",
+      "connectionId": "AzureStorageLocalConnection",
+      "secretStore": "LocalSecretsFile"
+    },
+    "storage2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/iguanastorage",
+      "type": "storage.azure",
+      "connectionId": "AzureIguanaStorageConnection",
+      "secretStore": "LocalSecretsFile"
     }
   }
 }

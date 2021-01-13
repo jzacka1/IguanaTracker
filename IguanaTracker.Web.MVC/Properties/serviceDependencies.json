@@ -6,6 +6,14 @@
     "mssql1": {
       "type": "mssql",
       "connectionId": "DefaultConnection"
+    },
+    "storage1": {
+      "type": "storage",
+      "connectionId": "AzureStorageLocalConnection"
+    },
+    "storage2": {
+      "type": "storage",
+      "connectionId": "AzureIguanaStorageConnection"
     }
   }
 }

@@ -1,5 +1,6 @@
-﻿@model IEnumerable<IguanaTracker.Data.Data.Iguana>
+﻿@model IEnumerable<IguanaLinkViewModel>
 @using IguanaTracker.Data.Helpers;
+@using IguanaTracker.Data.Data.ViewModels;
 
 @{
 	ViewData["Title"] = "Home Page";
@@ -35,24 +36,25 @@ if (Model.Count() > 0)
 				{
 					<div class="carousel-item pb-6 @active">
 						<div class="card pb-4 mx-auto" style="width: auto; max-width: 50rem;">
-							<img class="card-img-top img-fluid" role="img" aria-label="Uploaded image" src="@Helpers.formatBytesToImage(item.Image)" width="20" alt="iguana_@item.Id" />
+							<img class="card-img-top img-fluid" role="img" aria-label="Uploaded image" src="@item.link" width="20" alt="iguana_@item.iguana.Id" />
 							@*<div id="map-container-google-1" class="map-container">
 								<iframe aria-label="Google map pinpointing location of iguana sighting." src="@String.Format("https://maps.google.com/maps?q={0},{1}&z=15&output=embed", item.Latitude, item.Longitude)" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 							</div>*@
-							<div class="card-body">
-								<div>
-									<label><b>Date Posted:</b></label>
+						<div class="card-body">
+							<div>
+								<label><b>Date Posted:</b></label>
 
-									@Html.DisplayFor(modelItem => item.DatePosted)
-								</div>
-								<div>
-									<label><b>City, State:</b></label>
-									@Html.DisplayFor(modelItem => item.City),
-									@Html.DisplayFor(modelItem => item.State)
-								</div>
-								<p class="card-text">@item.Description</p>
-								<a class="btn btn-primary col-md-3 offset-md-1" href="/Sightings#iguana_@item.Id" style="z-index: 2;">Go to sightings</a>
+								@Html.DisplayFor(modelItem => item.iguana.DatePosted)
 							</div>
+							<div>
+								<label><b>City, State:</b></label>
+								@Html.DisplayFor(modelItem => item.iguana.City),
+								@Html.DisplayFor(modelItem => item.iguana.State)
+							</div>
+							<p class="card-text">@item.iguana.Description</p>
+							@*<a class="btn btn-primary col-md-3 offset-md-1" href="/Sightings#iguana_@item.iguana.Id" style="z-index: 2;">Go to sightings</a>*@
+							<a class="btn btn-primary col-md-3 offset-md-1" href="/Sightings#iguana_@item.iguana.Id" style="z-index: 2;">Go to sightings</a>
+						</div>
 						</div>
 					</div>
 

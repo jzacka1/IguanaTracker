@@ -1,5 +1,6 @@
-﻿@model IEnumerable<IguanaTracker.Data.Data.Iguana>
+﻿@model IEnumerable<IguanaLinkViewModel>
 @using IguanaTracker.Data.Helpers;
+@using IguanaTracker.Data.Data.ViewModels;
 
 @{
 	ViewData["Title"] = "Sightings";
@@ -13,11 +14,11 @@
 @foreach (var item in Model.Reverse())
 {
 	<hr />
-	<div id="iguana_@item.Id" class="sighting">
+	<div id="iguana_@item.iguana.Id" class="sighting">
 		<div>
-			<img class="img-fluid" role="img" aria-label="Uploaded image" src="@Helpers.formatBytesToImage(item.Image)" width="500" alt="iguana_@item.Id" />
+			<img class="img-fluid" role="img" aria-label="Uploaded Image" src="@item.link" width="500" alt="iguana_@item.iguana.Id" />
 			<div id="map-container-google-1" class="map-container" style="width: 500px; height: 350px;">
-				<iframe aria-label="Google map pinpointing location of iguana sighting." src="@String.Format("https://maps.google.com/maps?q={0},{1}&z=15&output=embed", item.Latitude, item.Longitude)" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+				<iframe aria-label="Google map pinpointing location of iguana sighting." src="@String.Format("https://maps.google.com/maps?q={0},{1}&z=15&output=embed", item.iguana.Latitude, item.iguana.Longitude)" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 			</div>
 
 		</div>
@@ -25,17 +26,17 @@
 			<div>
 				<label><b>Date Posted:</b></label>
 
-				@Html.DisplayFor(modelItem => item.DatePosted)
+				@Html.DisplayFor(modelItem => item.iguana.DatePosted)
 			</div>
 			<div>
 				<label><b>City, State:</b></label>
-				@Html.DisplayFor(modelItem => item.City),
-				@Html.DisplayFor(modelItem => item.State)
+				@Html.DisplayFor(modelItem => item.iguana.City),
+				@Html.DisplayFor(modelItem => item.iguana.State)
 			</div>
 		</div>
 		<label><b>Description:</b></label>
 		<div>
-			@Html.DisplayFor(modelItem => item.Description)
+			@Html.DisplayFor(modelItem => item.iguana.Description)
 		</div>
 	</div>
 }

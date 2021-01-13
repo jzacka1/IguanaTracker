@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.3.0" />
+    <PackageReference Include="Azure.Storage.Files.Shares" Version="12.1.0" />
+    <PackageReference Include="Azure.Storage.Queues" Version="12.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,15 +25,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Azure" Version="1.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IguanaTracker.BL\IguanaTracker.BL.csproj" />
+    <Folder Include="Properties\ServiceDependencies\local\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\ServiceDependencies\local\" />
+    <ProjectReference Include="..\..\..\..\Desktop\IguanaTracker.BL\IguanaTracker.BL.csproj" />
+    <ProjectReference Include="..\..\..\..\Desktop\IguanaTracker.Data\IguanaTracker.Data.csproj" />
   </ItemGroup>
 
 </Project>

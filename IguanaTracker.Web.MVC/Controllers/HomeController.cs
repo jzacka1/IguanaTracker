@@ -10,6 +10,10 @@ using IguanaTracker.BL.Services.Interfaces;
 using IguanaTracker.Data.Data;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using IguanaTracker.BL.Services;
+using IguanaTracker.Data.Data.ViewModels;
 
 namespace IguanaTracker.Web.MVC.Controllers
 {
@@ -20,17 +24,33 @@ namespace IguanaTracker.Web.MVC.Controllers
 		private readonly ILogger<HomeController> _logger;
 		private readonly IIguanaTrackerService _iguanaTrackerService;
 
-		public HomeController(IWebHostEnvironment hostEnvironment, ILogger<HomeController> logger, IIguanaTrackerService iguanaTrackerService)
+		private readonly AzureBlobService _azureBlobService;
+
+		public HomeController(IWebHostEnvironment hostEnvironment, 
+								ILogger<HomeController> logger, 
+								IIguanaTrackerService iguanaTrackerService, 
+								BlobServiceClient blobServiceClient)
 		{
+			_hostEnvironment = hostEnvironment;
 			_logger = logger;
 			_iguanaTrackerService = iguanaTrackerService;
-			_hostEnvironment = hostEnvironment;
+			_azureBlobService = new AzureBlobService(blobServiceClient, "iguana-image-container");
 		}
 
-		[ResponseCache(Duration = 30)]
+		[ResponseCache(Duration = 10)]
 		public async Task<IActionResult> Index()
 		{
-			return View(await _iguanaTrackerService.GetAmount(4));
+			List<IguanaLinkViewModel> iguanaLinkVmLst = new List<IguanaLinkViewModel>();
+
+			foreach(var i in _iguanaTrackerService.GetAmount(4))
+			{
+				IguanaLinkViewModel temp = new IguanaLinkViewModel();
+				temp.iguana = i;
+				temp.link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName);
+				iguanaLinkVmLst.Add(temp);
+			}
+
+			return View(iguanaLinkVmLst);
 		}
 
 		[ResponseCache(Duration = 30)]
@@ -50,13 +70,23 @@ namespace IguanaTracker.Web.MVC.Controllers
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 
-		[ResponseCache(Duration = 30)]
+		[ResponseCache(Duration = 10)]
 		public async Task<IActionResult> Sightings()
 		{
-			return View(await _iguanaTrackerService.GetAll());
+			List<IguanaLinkViewModel> iguanaLinkVmLst = new List<IguanaLinkViewModel>();
+
+			foreach (var i in await _iguanaTrackerService.GetAll()){
+				IguanaLinkViewModel temp = new IguanaLinkViewModel();
+				temp.iguana = i;
+				temp.link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName);
+
+				iguanaLinkVmLst.Add(temp);
+			}
+
+			return View(iguanaLinkVmLst);
 		}
 
-		[ResponseCache(Duration = 30)]
+		[ResponseCache(Duration = 5)]
 		public IActionResult AddSighting(){
 			return View();
 		}
@@ -68,6 +98,7 @@ namespace IguanaTracker.Web.MVC.Controllers
 			if (ModelState.IsValid)
 			{
 				_iguanaTrackerService.Add(iguana);
+				_azureBlobService.UploadFileToStorage(iguana._ImageData, iguana.ImageFileName);
 			}
 
 			return RedirectToAction("Index");

@@ -14,6 +14,7 @@ namespace IguanaTracker.Test
 		private FloridaIguanaTrackerDBContext dbTest;
 
 		public DataTesting(){
+
 			Initialize();
 		}
 
@@ -75,7 +76,7 @@ namespace IguanaTracker.Test
 					DatePosted = DateTime.Now,
 					City = "Boca Raton",
 					State = "Florida",
-					Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
+					//Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
 					Latitude = 26.400000000M,
 					Longitude = -80.200000000M,
 					Description = "This one was found by the canal in the neighborhood scaring pets away."
@@ -88,7 +89,7 @@ namespace IguanaTracker.Test
 					DatePosted = DateTime.Now,
 					City = "Boca Raton",
 					State = "Florida",
-					Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
+					//Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
 					Latitude = 26.400829900M,
 					Longitude = -80.198654000M,
 					Description = "This iguana was lying on the sidewalk.  It's not moving, so I assume it's dead."
@@ -101,7 +102,7 @@ namespace IguanaTracker.Test
 					DatePosted = DateTime.Now,
 					City = "Boca Raton",
 					State = "Florida",
-					Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
+					//Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
 					Latitude = 26.400829900M,
 					Longitude = -80.198654000M,
 					Description = "This iguana was basking in the sun by the street."
