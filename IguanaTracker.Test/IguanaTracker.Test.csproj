@@ -21,8 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Desktop\IguanaTracker.BL\IguanaTracker.BL.csproj" />
-    <ProjectReference Include="..\..\..\..\Desktop\IguanaTracker.Data\IguanaTracker.Data.csproj" />
+    <ProjectReference Include="..\IguanaTracker.Data\IguanaTracker.Data.csproj" />
   </ItemGroup>
 
 </Project>
