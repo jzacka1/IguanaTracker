@@ -98,7 +98,10 @@ namespace IguanaTracker.Web.MVC.Controllers
 			if (ModelState.IsValid)
 			{
 				_iguanaTrackerService.Add(iguana);
-				_azureBlobService.UploadFileToStorage(iguana._ImageData, iguana.ImageFileName);
+
+				string filePath = string.Format("{0}{1}", iguana.Directory, iguana.ImageFileName);
+
+				_azureBlobService.UploadFileToStorage(iguana._ImageData, filePath);
 			}
 
 			return RedirectToAction("Index");

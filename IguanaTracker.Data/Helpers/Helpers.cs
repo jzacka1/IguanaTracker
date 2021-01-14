@@ -13,7 +13,7 @@ namespace IguanaTracker.Data.Helpers
 	public class Helpers
 	{
 		//Convert image file to byte array
-		public static byte[] ImageToByteArrayAsync(IFormFile img){
+		public static byte[] ImageToByteArray(IFormFile img){
 			byte[] fileBytes = null;
 
 			if (img.Length > 0 || img != null)

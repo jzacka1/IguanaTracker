@@ -13,7 +13,7 @@ namespace IguanaTracker.Data.Data
     {
         public Iguana() {
             DatePosted = DateTime.Now;
-            ImageFileName = String.Format("{0}{1}{2}.{3}", directory, name, Helpers.TimeHelper.GetEpochSeconds(), imageFormat.jpg.ToString());
+            ImageFileName = String.Format("{0}{1}.{2}", name, Helpers.TimeHelper.GetEpochSeconds(), imageFormat.jpg.ToString());
         }
 
         private string name = "IguanaSighting_";
