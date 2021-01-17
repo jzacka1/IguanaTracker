@@ -42,7 +42,7 @@ namespace IguanaTracker.Web.MVC.Controllers
 		{
 			List<IguanaLinkViewModel> iguanaLinkVmLst = new List<IguanaLinkViewModel>();
 
-			foreach(var i in _iguanaTrackerService.GetAmount(4))
+			foreach(var i in await _iguanaTrackerService.GetAmountReverseAsync(4))
 			{
 				IguanaLinkViewModel temp = new IguanaLinkViewModel();
 				temp.iguana = i;
@@ -75,7 +75,7 @@ namespace IguanaTracker.Web.MVC.Controllers
 		{
 			List<IguanaLinkViewModel> iguanaLinkVmLst = new List<IguanaLinkViewModel>();
 
-			foreach (var i in await _iguanaTrackerService.GetAll()){
+			foreach (var i in await _iguanaTrackerService.GetAllAsync()){
 				IguanaLinkViewModel temp = new IguanaLinkViewModel();
 				temp.iguana = i;
 				temp.link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName);

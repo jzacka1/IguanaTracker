@@ -28,13 +28,65 @@ namespace IguanaTracker.BL.Services
 			db.SaveChanges();
 		}
 
-		public async Task<List<Iguana>> GetAll()
+		public List<Iguana> GetAll()
+		{
+			return db.Iguanas.ToList<Iguana>();
+		}
+
+		public async Task<List<Iguana>> GetAllAsync()
 		{
 			return await db.Iguanas.ToListAsync<Iguana>();
 		}
 
+		public List<Iguana> GetReverse()
+		{
+			List<Iguana> list = GetAll();
+			list.Reverse();
+			return list;
+		}
+
+		public async Task<List<Iguana>> GetReverseAsync()
+		{
+			List<Iguana> list = await db.Iguanas.ToListAsync();
+
+			list.Reverse();
+
+			return list;
+		}
+
 		public List<Iguana> GetAmount(int count){
-			return db.Iguanas.Take(count).ToList<Iguana>();
+			return db.Iguanas
+							.Take(count)
+							.ToList<Iguana>();
+		}
+
+		public async Task<List<Iguana>> GetAmountAsync(int count)
+		{
+			return await db.Iguanas
+								.Take(count)
+								.ToListAsync();
+		}
+
+		public List<Iguana> GetAmountReverse(int count)
+		{
+			var list = db.Iguanas;
+
+			list.Reverse();
+
+			return list
+					.Take(count)
+					.ToList<Iguana>(); ;
+		}
+
+		public async Task<List<Iguana>> GetAmountReverseAsync(int count)
+		{
+			var list = db.Iguanas;
+
+			list.Reverse();
+
+			return await list
+							.Take(count)
+							.ToListAsync();
 		}
 
 		public List<Iguana> GetByCity(string city)

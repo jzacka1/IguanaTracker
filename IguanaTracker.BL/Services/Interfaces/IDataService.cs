@@ -9,8 +9,14 @@ namespace IguanaTracker.BL.Services.Interfaces
 	{
 		void Add(T item);
 
-		Task<List<T>> GetAll();
+		List<T> GetAll();
+		Task<List<T>> GetAllAsync();
 		List<T> GetAmount(int count);
+		Task<List<T>> GetAmountAsync(int count);
+		List<T> GetAmountReverse(int count);
+		Task<List<T>> GetAmountReverseAsync(int count);
+		List<T> GetReverse();
+		Task<List<T>> GetReverseAsync();
 		T GetById(int id);
 		List<T> GetByCity(string city);
 		List<T> GetByDate(DateTime date);
