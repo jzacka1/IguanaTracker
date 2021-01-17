@@ -69,24 +69,24 @@ namespace IguanaTracker.BL.Services
 
 		public List<Iguana> GetAmountReverse(int count)
 		{
-			var list = db.Iguanas;
+			var list = db.Iguanas
+							.Take(count)
+							.ToList<Iguana>();
 
 			list.Reverse();
 
-			return list
-					.Take(count)
-					.ToList<Iguana>(); ;
+			return list;
 		}
 
 		public async Task<List<Iguana>> GetAmountReverseAsync(int count)
 		{
-			var list = db.Iguanas;
+			List<Iguana> list = await db.Iguanas
+										.Take(count)
+										.ToListAsync();
 
 			list.Reverse();
 
-			return await list
-							.Take(count)
-							.ToListAsync();
+			return list;
 		}
 
 		public List<Iguana> GetByCity(string city)

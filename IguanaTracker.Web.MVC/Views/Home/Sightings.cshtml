@@ -11,7 +11,7 @@
 @Html.ActionLink("Add Sighting", "AddSighting", "Home")
 
 
-@foreach (var item in Model.Reverse())
+@foreach (var item in Model)
 {
 	<hr />
 	<div id="iguana_@item.iguana.Id" class="sighting">

@@ -75,7 +75,7 @@ namespace IguanaTracker.Web.MVC.Controllers
 		{
 			List<IguanaLinkViewModel> iguanaLinkVmLst = new List<IguanaLinkViewModel>();
 
-			foreach (var i in await _iguanaTrackerService.GetAllAsync()){
+			foreach (var i in await _iguanaTrackerService.GetReverseAsync()){
 				IguanaLinkViewModel temp = new IguanaLinkViewModel();
 				temp.iguana = i;
 				temp.link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName);

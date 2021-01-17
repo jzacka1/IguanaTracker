@@ -11,6 +11,12 @@
       "type": "mssql.azure",
       "connectionId": "DefaultConnection",
       "secretStore": "AzureAppSettings"
+    },
+    "storage2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/iguanastorage",
+      "type": "storage.azure",
+      "connectionId": "AzureIguanaStorageConnection",
+      "secretStore": "AzureAppSettings"
     }
   }
 }

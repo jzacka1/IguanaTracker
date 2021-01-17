@@ -52,6 +52,12 @@ namespace IguanaTracker.Web.MVC
 				services.AddDbContext<FloridaIguanaTrackerDBContext>(options =>
 					options.UseSqlServer(
 						Configuration.GetConnectionString("DefaultConnection")));
+
+				services.AddAzureClients(builder =>
+				{
+					builder.AddBlobServiceClient(Configuration["ConnectionStrings:AzureIguanaStorageConnection:blob"], preferMsi: true);
+					builder.AddQueueServiceClient(Configuration["ConnectionStrings:AzureIguanaStorageConnection:queue"], preferMsi: true);
+				});
 			}
 
 			services.AddTransient<IIguanaTrackerService, IguanaTrackerService>();
