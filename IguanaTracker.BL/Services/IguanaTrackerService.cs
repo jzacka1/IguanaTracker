@@ -47,11 +47,16 @@ namespace IguanaTracker.BL.Services
 
 		public async Task<List<Iguana>> GetReverseAsync()
 		{
-			List<Iguana> list = await db.Iguanas.ToListAsync();
+			//return list;
+			return await Task.Run(() =>
+			{
+				List<Iguana> list = GetAll();
 
-			list.Reverse();
+				list.Reverse();
 
-			return list;
+				return list;
+
+			});
 		}
 
 		public List<Iguana> GetAmount(int count){
@@ -80,13 +85,14 @@ namespace IguanaTracker.BL.Services
 
 		public async Task<List<Iguana>> GetAmountReverseAsync(int count)
 		{
-			List<Iguana> list = await db.Iguanas
-										.Take(count)
-										.ToListAsync();
+			return await Task.Run(() => {
+					List<Iguana> list = GetAmount(count);
 
-			list.Reverse();
+					list.Reverse();
 
-			return list;
+					return list;
+				}
+			);
 		}
 
 		public List<Iguana> GetByCity(string city)
@@ -107,6 +113,32 @@ namespace IguanaTracker.BL.Services
 		public Iguana GetById(int id)
 		{
 			return db.Iguanas.Find(id);
+		}
+
+		public List<Iguana> GetReverseSortByDate()
+		{
+			return GetAll().OrderByDescending(d => d.DatePosted).ToList<Iguana>();
+		}
+
+		Task<List<Iguana>> IDataService<Iguana>.GetReverseSortByDateAsync()
+		{
+			return Task.Run(() =>
+			{
+				return GetReverseSortByDate();
+			});
+		}
+
+		public List<Iguana> GetAmountReverseSortByDate(int count)
+		{
+			return GetReverseSortByDate().Take(count).ToList();
+		}
+
+		public Task<List<Iguana>> GetAmountReverseSortByDateAsync(int count)
+		{
+			return Task.Run(() =>
+			{
+				return GetAmountReverseSortByDate(count);
+			});
 		}
 	}
 }
