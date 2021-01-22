@@ -101,7 +101,10 @@ namespace IguanaTracker.Web.MVC.Controllers
 
 				string filePath = string.Format("{0}{1}", iguana.Directory, iguana.ImageFileName);
 
-				_azureBlobService.UploadFileToStorage(iguana._ImageData, filePath);
+				BlobHttpHeaders blobHttpHeader = new BlobHttpHeaders();
+				blobHttpHeader.ContentType = "image/jpeg";
+
+				_azureBlobService.UploadFileToStorage(iguana._ImageData, filePath, blobHttpHeader);
 			}
 
 			return RedirectToAction("Index");

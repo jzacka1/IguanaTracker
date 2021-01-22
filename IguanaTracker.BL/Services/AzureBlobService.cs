@@ -27,9 +27,9 @@ namespace IguanaTracker.BL.Services
 			return _blobServiceClient.GetBlobContainerClient(containerName);
 		}
 
-		public void UploadFileToStorage(IFormFile file, string fileName){
+		public void UploadFileToStorage(IFormFile file, string fileName, BlobHttpHeaders blobHttpHeader){
 			GetBlobByFileName(fileName)
-				.Upload(file.OpenReadStream());
+			.Upload(file.OpenReadStream(), blobHttpHeader);
 		}
 
 		public BlobClient GetBlobByFileName(string fileName){
