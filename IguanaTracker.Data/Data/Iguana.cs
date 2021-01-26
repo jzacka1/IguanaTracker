@@ -20,7 +20,6 @@ namespace IguanaTracker.Data.Data
             ImageFileName = String.Format("{0}{1}.{2}", name, Helpers.TimeHelper.GetEpochSeconds(), imageFormat.jpg.ToString());
         }
 
-        
         private IFormFile _imageData;
 
         public int Id { get; set; }
@@ -32,21 +31,21 @@ namespace IguanaTracker.Data.Data
             set { }
         }
 
+        //Fetch image and its geocoordinates
         [NotMapped]
         public IFormFile _ImageData {
 			get { return _imageData; }
 			set
 			{
                 _imageData = (IFormFile)value;
+
                 //Img = Helpers.Helpers.ImageToByteArrayAsync((IFormFile)value);
-			}
+            }
 		}
         public string City { get; set; }
         public string State { get; set; }
-        [Column(TypeName = "decimal(11,9)")]
-        public decimal Latitude { get; set; }
-        [Column(TypeName = "decimal(11,9)")]
-        public decimal Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public string Description { get; set; }
     }
 }

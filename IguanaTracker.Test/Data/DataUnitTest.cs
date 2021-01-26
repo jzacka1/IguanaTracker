@@ -77,8 +77,8 @@ namespace IguanaTracker.Test
 					City = "Boca Raton",
 					State = "Florida",
 					//Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
-					Latitude = 26.400000000M,
-					Longitude = -80.200000000M,
+					Latitude = 26.400000000F,
+					Longitude = -80.200000000F,
 					Description = "This one was found by the canal in the neighborhood scaring pets away."
 				});
 
@@ -90,8 +90,8 @@ namespace IguanaTracker.Test
 					City = "Boca Raton",
 					State = "Florida",
 					//Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
-					Latitude = 26.400829900M,
-					Longitude = -80.198654000M,
+					Latitude = 26.400829900F,
+					Longitude = -80.198654000F,
 					Description = "This iguana was lying on the sidewalk.  It's not moving, so I assume it's dead."
 				});
 
@@ -103,8 +103,8 @@ namespace IguanaTracker.Test
 					City = "Boca Raton",
 					State = "Florida",
 					//Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
-					Latitude = 26.400829900M,
-					Longitude = -80.198654000M,
+					Latitude = 26.400829900F,
+					Longitude = -80.198654000F,
 					Description = "This iguana was basking in the sun by the street."
 				});
 

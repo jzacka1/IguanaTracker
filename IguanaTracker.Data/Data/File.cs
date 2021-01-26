@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IguanaTracker.Data.Data
 {
-	public class File
+	public class File : Geocoding
 	{
 		protected string name;
 		protected string directory;

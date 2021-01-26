@@ -1,5 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using ExifLib;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;

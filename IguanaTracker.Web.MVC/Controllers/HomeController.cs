@@ -14,6 +14,7 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using IguanaTracker.BL.Services;
 using IguanaTracker.Data.Data.ViewModels;
+using ExifLib;
 
 namespace IguanaTracker.Web.MVC.Controllers
 {
@@ -97,7 +98,12 @@ namespace IguanaTracker.Web.MVC.Controllers
 			//https://www.codegrepper.com/code-examples/csharp/how+to+convert+iformfile+to+byte+array+c%23
 			if (ModelState.IsValid)
 			{
-				_iguanaTrackerService.Add(iguana);
+				//Fetch coordinates of uploaded file
+				var coord = iguana.GetGeoCoordinatesOfFile(iguana._ImageData.OpenReadStream());
+
+				//Check if coordinates are not null.
+				iguana.Latitude = coord == null ? iguana.Latitude : coord.latitude;
+				iguana.Longitude = coord == null ? iguana.Longitude : coord.longitude;
 
 				string filePath = string.Format("{0}{1}", iguana.Directory, iguana.ImageFileName);
 
@@ -105,6 +111,8 @@ namespace IguanaTracker.Web.MVC.Controllers
 				blobHttpHeader.ContentType = "image/jpeg";
 
 				_azureBlobService.UploadFileToStorage(iguana._ImageData, filePath, blobHttpHeader);
+
+				_iguanaTrackerService.Add(iguana);
 			}
 
 			return RedirectToAction("Index");
