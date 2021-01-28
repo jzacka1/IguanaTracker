@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IguanaTracker.API.Interfaces;
 using IguanaTracker.BL.Services;
 using IguanaTracker.BL.Services.Interfaces;
 using IguanaTracker.Data.Data;
@@ -15,10 +16,13 @@ namespace IguanaTracker.API.Controllers
 	[ApiController]
 	public class HomeController : ControllerBase
 	{
+		private readonly ILoggerService _logger;
 		private readonly IIguanaTrackerService _iguanaTracker;
 
-		public HomeController(IIguanaTrackerService iguanaTracker)
+		public HomeController(IIguanaTrackerService iguanaTracker,
+								ILoggerService logger)
 		{
+			_logger = logger;
 			_iguanaTracker = iguanaTracker;
 		}
 

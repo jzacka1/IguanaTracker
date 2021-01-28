@@ -140,5 +140,9 @@ namespace IguanaTracker.BL.Services
 				return GetAmountReverseSortByDate(count);
 			});
 		}
+
+		public void FearMe(){
+			string fat = "fsafdsafsdfdsa";
+		}
 	}
 }

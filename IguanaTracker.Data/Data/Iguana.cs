@@ -39,6 +39,13 @@ namespace IguanaTracker.Data.Data
 			{
                 _imageData = (IFormFile)value;
 
+                //Fetch coordinates of uploaded file
+                var coord = GetGeoCoordinatesOfFile(_imageData.OpenReadStream());
+
+                //Check if coordinates are not null.
+                Latitude = coord == null ? Latitude : coord.latitude;
+                Longitude = coord == null ? Longitude : coord.longitude;
+
                 //Img = Helpers.Helpers.ImageToByteArrayAsync((IFormFile)value);
             }
 		}
