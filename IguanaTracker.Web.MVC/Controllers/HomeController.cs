@@ -98,13 +98,6 @@ namespace IguanaTracker.Web.MVC.Controllers
 			//https://www.codegrepper.com/code-examples/csharp/how+to+convert+iformfile+to+byte+array+c%23
 			if (ModelState.IsValid)
 			{
-				////Fetch coordinates of uploaded file
-				//var coord = iguana.GetGeoCoordinatesOfFile(iguana._ImageData.OpenReadStream());
-
-				////Check if coordinates are not null.
-				//iguana.Latitude = coord == null ? iguana.Latitude : coord.latitude;
-				//iguana.Longitude = coord == null ? iguana.Longitude : coord.longitude;
-
 				string filePath = string.Format("{0}{1}", iguana.Directory, iguana.ImageFileName);
 
 				BlobHttpHeaders blobHttpHeader = new BlobHttpHeaders();

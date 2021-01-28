@@ -16,11 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BL\" />
     <Folder Include="Web.MVC\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IguanaTracker.BL\IguanaTracker.BL.csproj" />
     <ProjectReference Include="..\IguanaTracker.Data\IguanaTracker.Data.csproj" />
   </ItemGroup>
 
