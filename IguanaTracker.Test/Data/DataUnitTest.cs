@@ -11,7 +11,7 @@ namespace IguanaTracker.Test
 {
 	public class DataTesting
 	{
-		public static FloridaIguanaTrackerDBContext dbTest;
+		private FloridaIguanaTrackerDBContext dbTest;
 
 		public DataTesting(){
 
@@ -20,6 +20,42 @@ namespace IguanaTracker.Test
 
 		async void Initialize(){
 			dbTest = await GetDatabaseContext();
+		}
+
+		private List<string> IguanaImagePaths()
+		{
+			string root = @"..\..\..\..\IguanaTracker.Test\Images\";
+			List<string> iguanaImg = new List<string>();
+
+			iguanaImg.Add(String.Format("{0}{1}", root, "21xp-iguana1-videoSixteenByNineJumbo1600.jpg"));
+			iguanaImg.Add(String.Format("{0}{1}", root, "iguana-ap-er-190702_hpMain_1x1_992.jpg"));
+			iguanaImg.Add(String.Format("{0}{1}", root, "IguanaUFIFAS.jpg"));
+
+			return iguanaImg;
+		}
+
+		private List<FormFile> IguanaFormFiles(List<string> iguanaImg)
+		{
+			List<FormFile> frmFileLst = new List<FormFile>();
+
+			for (int i = 0; i < iguanaImg.Count; i++)
+			{
+				var fs = Helpers.LoadImageFromFolder(iguanaImg[i]);
+				var ms = Helpers.ConvertFileStreamToMemoryStream(fs);
+
+				frmFileLst.Add(
+					Helpers.ConvertMemoryStreamToFormFile(
+						ms, 
+						"imageSample_" + i + 1, 
+						"Iguana_" + i + 1)
+					);
+
+				//When you're done, always close the connection.
+				fs.Close();
+				ms.Close();
+			}
+
+			return frmFileLst;
 		}
 
 		private async Task<FloridaIguanaTrackerDBContext> GetDatabaseContext(){
@@ -31,7 +67,7 @@ namespace IguanaTracker.Test
 			databaseContext.Database.EnsureCreated();
 			if (await databaseContext.Iguanas.CountAsync() <= 0)
 			{
-				//List<FormFile> frmfileLst = IguanaFormFiles(IguanaImagePaths());
+				List<FormFile> frmfileLst = IguanaFormFiles(IguanaImagePaths());
 
 				/*-- 1 --*/
 				databaseContext.Iguanas.Add(new Iguana()
@@ -40,13 +76,10 @@ namespace IguanaTracker.Test
 					DatePosted = DateTime.Now,
 					City = "Boca Raton",
 					State = "Florida",
-					ImageFileName = String.Format("IguanaSighting_{0}", TimeHelper.GetEpochSeconds()),
-					Directory = "sighting/",
+					//Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
 					Latitude = 26.400000000F,
 					Longitude = -80.200000000F,
-					Description = "This one was found by the canal in the neighborhood scaring pets away.",
-					
-					
+					Description = "This one was found by the canal in the neighborhood scaring pets away."
 				});
 
 				/*-- 2 --*/
@@ -56,8 +89,7 @@ namespace IguanaTracker.Test
 					DatePosted = DateTime.Now,
 					City = "Boca Raton",
 					State = "Florida",
-					ImageFileName = String.Format("IguanaSighting_{0}", TimeHelper.GetEpochSeconds()),
-					Directory = "sighting/",
+					//Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
 					Latitude = 26.400829900F,
 					Longitude = -80.198654000F,
 					Description = "This iguana was lying on the sidewalk.  It's not moving, so I assume it's dead."
@@ -70,8 +102,7 @@ namespace IguanaTracker.Test
 					DatePosted = DateTime.Now,
 					City = "Boca Raton",
 					State = "Florida",
-					ImageFileName = String.Format("IguanaSighting_{0}", TimeHelper.GetEpochSeconds()),
-					Directory = "sighting/",
+					//Image = Helpers.ImageToByteArrayAsync(frmfileLst[0]),
 					Latitude = 26.400829900F,
 					Longitude = -80.198654000F,
 					Description = "This iguana was basking in the sun by the street."
