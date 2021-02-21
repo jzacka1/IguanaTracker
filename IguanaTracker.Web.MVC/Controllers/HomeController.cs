@@ -15,6 +15,7 @@ using Azure.Storage.Blobs.Models;
 using IguanaTracker.BL.Services;
 using IguanaTracker.Data.Data.ViewModels;
 using ExifLib;
+using System.Linq.Dynamic.Core;
 
 namespace IguanaTracker.Web.MVC.Controllers
 {
@@ -71,9 +72,11 @@ namespace IguanaTracker.Web.MVC.Controllers
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 
+		//p is the current page
 		[ResponseCache(Duration = 10)]
-		public async Task<IActionResult> Sightings()
+		public async Task<IActionResult> Sightings(int p = 1)
 		{
+
 			List<IguanaLinkViewModel> iguanaLinkVmLst = new List<IguanaLinkViewModel>();
 
 			foreach (var i in await _iguanaTrackerService.GetReverseSortByDateAsync()){
@@ -84,7 +87,27 @@ namespace IguanaTracker.Web.MVC.Controllers
 				iguanaLinkVmLst.Add(temp);
 			}
 
-			return View(iguanaLinkVmLst);
+			int pageSize = 6;
+
+			int skipRecords = (pageSize * p) - pageSize;
+			int pageCount = iguanaLinkVmLst.Count() / pageSize;
+
+			PagedResult<IguanaLinkViewModel> list = new PagedResult<IguanaLinkViewModel>
+			{
+				Queryable = iguanaLinkVmLst.AsQueryable<IguanaLinkViewModel>()
+								.Skip(skipRecords)
+								.Take(pageSize),
+				PageSize = pageSize,
+				PageCount = pageCount,
+				CurrentPage = p
+			};
+
+			//iguanaLinkVmLst
+			//		.Skip(skipRecords)
+			//		.Take(pageSize)
+
+			//return View(iguanaLinkVmLst);
+			return View(list);
 		}
 
 		[ResponseCache(Duration = 5)]

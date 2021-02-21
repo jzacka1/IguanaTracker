@@ -45,7 +45,7 @@
                         Command="{Binding OpenWebCommand}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />-->
-				<Label Text="Welcome to Iguana Tracker" FontSize="Large"/>
+				<Label Text="About Florida Iguana Tracker" FontSize="Large"/>
 				<Label Text="If you found iguanas in Florida, send a sighting report here." FontSize="Medium"/>
 			</StackLayout>
 		</ScrollView>

@@ -21,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IguanaTracker.BL\IguanaTracker.BL.csproj" />
     <ProjectReference Include="..\IguanaTracker.Data\IguanaTracker.Data.csproj" />
+    <ProjectReference Include="..\RestfulApiService\RestfulApiService.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,8 @@
-﻿@model IEnumerable<IguanaLinkViewModel>
+﻿@*@model IEnumerable<IguanaLinkViewModel>*@
+@model PagedResult<IguanaLinkViewModel>
 @using IguanaTracker.Data.Helpers;
 @using IguanaTracker.Data.Data.ViewModels;
+@using System.Linq.Dynamic.Core;
 
 @{
 	ViewData["Title"] = "Sightings";
@@ -11,7 +13,7 @@
 @Html.ActionLink("Add Sighting", "AddSighting", "Home")
 
 
-@foreach (var item in Model)
+@foreach (var item in Model.Queryable)
 {
 	<hr />
 	<div id="iguana_@item.iguana.Id" class="sighting">
@@ -40,3 +42,34 @@
 		</div>
 	</div>
 }
+
+<nav class="table-responsive">
+	<ul class="pagination justify-content-center d-flex flex-wrap">
+		@if (Model.CurrentPage > 1)
+		{
+			<li class="page-item">
+				<a class="page-link" href="/Sightings">First</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="/Sightings?p=@(Model.CurrentPage - 1)">Previous</a>
+			</li>
+		}
+
+		@for(int i = 1; i <= Model.PageCount; i++)
+		{
+			<li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+				<a class="page-link" href="/Sightings?p=@i">@i</a>
+			</li>
+		}
+
+		@if (Model.CurrentPage < Model.PageCount)
+		{
+			<li class="page-item">
+				<a class="page-link" href="/Sightings?p=@(Model.CurrentPage + 1)">Next</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="/Sightings?p=@(Model.PageCount)">Last</a>
+			</li>
+		}
+	</ul>
+</nav>

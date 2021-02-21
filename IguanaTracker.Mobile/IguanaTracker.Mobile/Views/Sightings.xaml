@@ -7,6 +7,20 @@
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+			<ListView HasUnevenRows="true" ItemsSource="{Binding Sightings}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Vertical">
+								<Label Text="{Binding City}"/>
+								<Label Text="{Binding State}"/>
+								<Label Text="{Binding Description}"/>
+								<Label Text="{Binding DatePosted,StringFormat='{0:MM/dd/yyyy}'}"/>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
     </ContentPage.Content>
 </ContentPage>

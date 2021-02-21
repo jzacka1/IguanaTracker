@@ -28,29 +28,29 @@ namespace IguanaTracker.Data.Data
 //            }
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Iguana>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("ID");
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Iguana>(entity =>
+        //    {
+        //        entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.City)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+        //        entity.Property(e => e.City)
+        //            .IsRequired()
+        //            .HasMaxLength(50)
+        //            .IsUnicode(false);
 
-                entity.Property(e => e.DatePosted).HasColumnType("datetime");
+        //        entity.Property(e => e.DatePosted).HasColumnType("datetime");
 
-                entity.Property(e => e.Description).IsUnicode(false);
+        //        entity.Property(e => e.Description).IsUnicode(false);
 
-                entity.Property(e => e.State)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
+        //        entity.Property(e => e.State)
+        //            .IsRequired()
+        //            .HasMaxLength(50)
+        //            .IsUnicode(false);
+        //    });
 
-            OnModelCreatingPartial(modelBuilder);
-        }
+        //    OnModelCreatingPartial(modelBuilder);
+        //}
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
