@@ -6,7 +6,7 @@ namespace IguanaTracker.Data.Data.ViewModels
 {
 	public class IguanaLinkViewModel
 	{
-		public string link { get; set; }
-		public Iguana iguana { get; set; }
+		public string Link { get; set; }
+		public Iguana Iguana { get; set; }
 	}
 }

@@ -24,10 +24,16 @@ a {
   border-color: #1861ac;
 }
 
+/* Dropdown menu for navbar
+-------------------------------------------------- */
+li.dropdown {
+    cursor: pointer;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {
@@ -43,7 +49,8 @@ html {
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+	box-shadow: 0 .25rem .75rem #000000;
+	box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
@@ -81,6 +88,13 @@ body {
     margin-bottom: 80px;
 }
 
+/* About Companies page
+-------------------------------------------------- */
+.company a > img {
+	/*max-width: 307px;*/
+	height: 172px;
+}
+
 /*Sightings
 -------------------------------------------------- */
 .sighting {
@@ -107,5 +121,7 @@ body {
 /* Carousel
  ------------------------------------------------- */
 .carousel-control-prev-icon, .carousel-control-next-icon {
-    filter: invert(1);
+	-moz-filter: invert(1);
+	-webkit-filter: invert(1);
+	filter: invert(1);
 }

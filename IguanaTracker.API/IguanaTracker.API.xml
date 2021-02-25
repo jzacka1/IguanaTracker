@@ -4,5 +4,74 @@
         <name>IguanaTracker.API</name>
     </assembly>
     <members>
+        <member name="M:IguanaTracker.API.Controllers.HomeController.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:IguanaTracker.API.Interfaces.ILoggerService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IguanaTracker.API.Interfaces.ILoggerService.LogInfo(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:IguanaTracker.API.Interfaces.ILoggerService.LogWarn(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:IguanaTracker.API.Interfaces.ILoggerService.LogDebug(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:IguanaTracker.API.Interfaces.ILoggerService.LogError(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:IguanaTracker.API.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:IguanaTracker.API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IguanaTracker.API.Services.LoggerService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:IguanaTracker.API.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IguanaTracker.API.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IguanaTracker.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
     </members>
 </doc>

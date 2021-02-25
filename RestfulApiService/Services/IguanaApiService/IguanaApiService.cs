@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RestfulApiService.Services.IguanaApiService
 {
-	public class IguanaApiService : BaseClient, IIguanaApiService
+	public sealed class IguanaApiService : BaseClient, IIguanaApiService
 	{
 		public IguanaApiService()
 			: base("https://iguanatrackerapi20210213201548.azurewebsites.net/api/"){

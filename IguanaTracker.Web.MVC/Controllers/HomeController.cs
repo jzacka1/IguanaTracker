@@ -46,9 +46,11 @@ namespace IguanaTracker.Web.MVC.Controllers
 
 			foreach(var i in await _iguanaTrackerService.GetAmountReverseSortByDateAsync(4))
 			{
-				IguanaLinkViewModel temp = new IguanaLinkViewModel();
-				temp.iguana = i;
-				temp.link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName);
+				IguanaLinkViewModel temp = new IguanaLinkViewModel
+				{
+					Iguana = i,
+					Link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName)
+				};
 				iguanaLinkVmLst.Add(temp);
 			}
 
@@ -57,6 +59,16 @@ namespace IguanaTracker.Web.MVC.Controllers
 
 		[ResponseCache(Duration = 30)]
 		public IActionResult About(){
+			return View();
+		}
+
+		public IActionResult Instructions()
+		{
+			return View();
+		}
+
+		public IActionResult Companies()
+		{
 			return View();
 		}
 
@@ -80,9 +92,11 @@ namespace IguanaTracker.Web.MVC.Controllers
 			List<IguanaLinkViewModel> iguanaLinkVmLst = new List<IguanaLinkViewModel>();
 
 			foreach (var i in await _iguanaTrackerService.GetReverseSortByDateAsync()){
-				IguanaLinkViewModel temp = new IguanaLinkViewModel();
-				temp.iguana = i;
-				temp.link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName);
+				IguanaLinkViewModel temp = new IguanaLinkViewModel
+				{
+					Iguana = i,
+					Link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName)
+				};
 
 				iguanaLinkVmLst.Add(temp);
 			}
@@ -102,11 +116,6 @@ namespace IguanaTracker.Web.MVC.Controllers
 				CurrentPage = p
 			};
 
-			//iguanaLinkVmLst
-			//		.Skip(skipRecords)
-			//		.Take(pageSize)
-
-			//return View(iguanaLinkVmLst);
 			return View(list);
 		}
 
@@ -121,19 +130,12 @@ namespace IguanaTracker.Web.MVC.Controllers
 			//https://www.codegrepper.com/code-examples/csharp/how+to+convert+iformfile+to+byte+array+c%23
 			if (ModelState.IsValid)
 			{
-				////Fetch coordinates of uploaded file
-				//var coord = iguana.GetGeoCoordinatesOfFile(iguana._ImageData.OpenReadStream());
-
-				////Check if coordinates are not null.
-				//iguana.Latitude = coord == null ? iguana.Latitude : coord.latitude;
-				//iguana.Longitude = coord == null ? iguana.Longitude : coord.longitude;
-
 				string filePath = string.Format("{0}{1}", iguana.Directory, iguana.ImageFileName);
 
 				BlobHttpHeaders blobHttpHeader = new BlobHttpHeaders();
 				blobHttpHeader.ContentType = "image/jpeg";
 
-				_azureBlobService.UploadFileToStorage(iguana._ImageData, filePath, blobHttpHeader);
+				_azureBlobService.UploadFileToStorage(iguana.ImageData, filePath, blobHttpHeader);
 
 				_iguanaTrackerService.Add(iguana);
 			}

@@ -6,6 +6,6 @@ namespace IguanaTracker.Data.Data
 {
 	public class Image : File
 	{
-		protected enum imageFormat { jpg, png }
+		protected enum ImageFormat { Jpg, Png }
 	}
 }

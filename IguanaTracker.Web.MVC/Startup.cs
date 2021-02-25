@@ -26,7 +26,7 @@ namespace IguanaTracker.Web.MVC
 			Configuration = configuration;
 		}
 
-		private bool isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+		private readonly bool _isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 
 		public IConfiguration Configuration { get; }
 
@@ -37,7 +37,7 @@ namespace IguanaTracker.Web.MVC
 
 			services.AddResponseCaching();
 
-			if (isDevelopment){
+			if (_isDevelopment){
 				services.AddDbContext<FloridaIguanaTrackerDBContext>(options =>
 					options.UseSqlServer(
 						Configuration.GetConnectionString("DefaultLocalConnection")));
@@ -101,7 +101,7 @@ namespace IguanaTracker.Web.MVC
 	{
 		public static IAzureClientBuilder<BlobServiceClient, BlobClientOptions> AddBlobServiceClient(this AzureClientFactoryBuilder builder, string serviceUriOrConnectionString, bool preferMsi)
 		{
-			if (preferMsi && Uri.TryCreate(serviceUriOrConnectionString, UriKind.Absolute, out Uri serviceUri))
+			if (preferMsi && Uri.TryCreate(serviceUriOrConnectionString, UriKind.Absolute, out var serviceUri))
 			{
 				return builder.AddBlobServiceClient(serviceUri);
 			}
@@ -112,7 +112,7 @@ namespace IguanaTracker.Web.MVC
 		}
 		public static IAzureClientBuilder<QueueServiceClient, QueueClientOptions> AddQueueServiceClient(this AzureClientFactoryBuilder builder, string serviceUriOrConnectionString, bool preferMsi)
 		{
-			if (preferMsi && Uri.TryCreate(serviceUriOrConnectionString, UriKind.Absolute, out Uri serviceUri))
+			if (preferMsi && Uri.TryCreate(serviceUriOrConnectionString, UriKind.Absolute, out var serviceUri))
 			{
 				return builder.AddQueueServiceClient(serviceUri);
 			}
