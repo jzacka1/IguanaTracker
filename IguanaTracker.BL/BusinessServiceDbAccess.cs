@@ -7,16 +7,16 @@ namespace IguanaTracker.BL
 {
 	public class BusinessServiceDbAccess : IDisposable
 	{
-		public readonly FloridaIguanaTrackerDBContext db;
+		public readonly FloridaIguanaTrackerDBContext Db;
 
 		public BusinessServiceDbAccess(FloridaIguanaTrackerDBContext db) 
 		{
-			this.db = db;
+			this.Db = db;
 		}
 
 		public void Dispose()
 		{
-			this.db.Dispose();
+			this.Db.Dispose();
 			GC.SuppressFinalize(this);
 		}
 	}

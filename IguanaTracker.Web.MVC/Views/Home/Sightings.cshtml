@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<IguanaLinkViewModel>*@
-@model PagedResult<IguanaLinkViewModel>
+﻿@model PagedResult<IguanaLinkViewModel>
 @using IguanaTracker.Data.Helpers;
 @using IguanaTracker.Data.Data.ViewModels;
 @using System.Linq.Dynamic.Core;
@@ -10,17 +9,17 @@
 
 <h1>Sightings</h1>
 
-@Html.ActionLink("Add Sighting", "AddSighting", "Home")
+@Html.ActionLink("Add Sighting", $"AddSighting", $"Home")
 
 
 @foreach (var item in Model.Queryable)
 {
 	<hr />
-	<div id="iguana_@item.iguana.Id" class="sighting">
+	<div id="iguana_@item.Iguana.Id" class="sighting">
 		<div>
-			<img class="img-fluid" role="img" aria-label="Uploaded Image" src="@item.link" width="500" alt="iguana_@item.iguana.Id" />
+			<img class="img-fluid" role="img" aria-label="Uploaded Image" src="@item.Link" width="500" alt="iguana_@item.Iguana.Id" />
 			<div id="map-container-google-1" class="map-container" style="width: 500px; height: 350px;">
-				<iframe aria-label="Google map pinpointing location of iguana sighting." src="@String.Format("https://maps.google.com/maps?q={0},{1}&z={2}&output=embed", item.iguana.Latitude, item.iguana.Longitude, 15)" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+				<iframe aria-label="Google map pinpointing location of iguana sighting." src="@string.Format("https://maps.google.com/maps?q={0},{1}&z={2}&output=embed", item.Iguana.Latitude, item.Iguana.Longitude, 15)" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 			</div>
 
 		</div>
@@ -28,17 +27,17 @@
 			<div>
 				<label><b>Date Posted:</b></label>
 
-				@Html.DisplayFor(modelItem => item.iguana.DatePosted)
+				@Html.DisplayFor(modelItem => item.Iguana.DatePosted)
 			</div>
 			<div>
 				<label><b>City, State:</b></label>
-				@Html.DisplayFor(modelItem => item.iguana.City),
-				@Html.DisplayFor(modelItem => item.iguana.State)
+				@Html.DisplayFor(modelItem => item.Iguana.City),
+				@Html.DisplayFor(modelItem => item.Iguana.State)
 			</div>
 		</div>
 		<label><b>Description:</b></label>
 		<div>
-			@Html.DisplayFor(modelItem => item.iguana.Description)
+			@Html.DisplayFor(modelItem => item.Iguana.Description)
 		</div>
 	</div>
 }
@@ -55,7 +54,7 @@
 			</li>
 		}
 
-		@for(int i = 1; i <= Model.PageCount; i++)
+		@for(var i = 1; i <= Model.PageCount; i++)
 		{
 			<li class="page-item @(i == Model.CurrentPage ? "active" : "")">
 				<a class="page-link" href="/Sightings?p=@i">@i</a>

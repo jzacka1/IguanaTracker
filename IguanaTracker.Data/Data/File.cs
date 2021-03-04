@@ -6,7 +6,7 @@ namespace IguanaTracker.Data.Data
 {
 	public class File : Geocoding
 	{
-		protected string name;
+		protected string Name;
 		protected string directory;
 	}
 }

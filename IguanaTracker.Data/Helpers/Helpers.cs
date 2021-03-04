@@ -16,30 +16,24 @@ namespace IguanaTracker.Data.Helpers
 		public static byte[] ImageToByteArray(IFormFile img){
 			byte[] fileBytes = null;
 
-			if (img.Length > 0 || img != null)
+			using var ms = new MemoryStream();
+			try
 			{
-				using (var ms = new MemoryStream())
-				{
-					try{
-						img.CopyTo(ms);
-						//await img.CopyToAsync(ms);
-						//await ms.WriteAsync(fileBytes, 0, fileBytes.Length);
-						fileBytes = ms.ToArray();
-					}
-					catch(Exception exception){
-
-					}
-				}
+				img.CopyTo(ms);
+				//await img.CopyToAsync(ms);
+				//await ms.WriteAsync(fileBytes, 0, fileBytes.Length);
+				fileBytes = ms.ToArray();
 			}
-			else{
-				return null;
+			catch (Exception)
+			{
+				// ignored
 			}
 
 			return fileBytes;
 		}
 
 		//Creates a string to include bytes to show image.
-		public static string formatBytesToImage(byte[] imageBytes){
+		public static string FormatBytesToImage(byte[] imageBytes){
 			return "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
 		}
 
@@ -47,16 +41,16 @@ namespace IguanaTracker.Data.Helpers
 		public static FileStream LoadImageFromFolder(string path)
 		{
 			//string path = @"..\\..\\..\\..\\Read file from project\\Images\\21xp-iguana1-videoSixteenByNineJumbo1600.jpg";
-			string filePath = Path.GetFullPath(path);
+			var filePath = Path.GetFullPath(path);
 
 			try
 			{
-				FileStream fs = new FileStream(filePath, FileMode.Open);
+				var fs = new FileStream(filePath, FileMode.Open);
 				return fs;
 			}
-			catch (Exception exception)
+			catch (Exception)
 			{
-
+				// ignored
 			}
 
 			return null;
@@ -66,7 +60,7 @@ namespace IguanaTracker.Data.Helpers
 		//Close the connection for MemoryStream after calling the method
 		public static MemoryStream ConvertFileStreamToMemoryStream(FileStream fs)
 		{
-			MemoryStream ms = new MemoryStream();
+			var ms = new MemoryStream();
 
 			try
 			{
@@ -74,9 +68,9 @@ namespace IguanaTracker.Data.Helpers
 
 				return ms;
 			}
-			catch (Exception exception)
+			catch (Exception)
 			{
-
+				// ignored
 			}
 
 			return null;
@@ -88,9 +82,9 @@ namespace IguanaTracker.Data.Helpers
 			{
 				return new FormFile(ms, 0, ms.Length, name, fileName);
 			}
-			catch (Exception exception)
+			catch (Exception)
 			{
-
+				// ignored
 			}
 
 			return null;
