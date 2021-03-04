@@ -9,18 +9,18 @@ namespace IguanaTracker.Test.ApiService
 {
 	public class ApiServiceUnitTest
 	{
-		private IguanaApiService _iguanaApiService;
+		private IguanaApiService iguanaApiService;
 		public ApiServiceUnitTest(){
 			Initialize();
 		}
 
 		private void Initialize(){
-			_iguanaApiService = new IguanaApiService();
+			iguanaApiService = new IguanaApiService();
 		}
 
 		[Fact]
 		public void GetAllTest(){
-			List<Iguana> iguanas = _iguanaApiService.GetAll();
+			List<Iguana> iguanas = iguanaApiService.GetAll();
 			Assert.True(iguanas.Count > 0);
 		}
 	}

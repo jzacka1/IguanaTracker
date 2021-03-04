@@ -22,9 +22,6 @@ using Microsoft.OpenApi.Models;
 
 namespace IguanaTracker.API
 {
-	/// <summary>
-	/// 
-	/// </summary>
 	public class Startup
 	{
 		public Startup(IConfiguration configuration)
@@ -32,16 +29,9 @@ namespace IguanaTracker.API
 			Configuration = configuration;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
 		public IConfiguration Configuration { get; }
 
 		// This method gets called by the runtime. Use this method to add services to the container.
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="services"></param>
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
@@ -57,8 +47,8 @@ namespace IguanaTracker.API
 					Description = "This is an API for Iguana Tracker"
 				});
 
-				var file = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-				var xpath = Path.Combine(AppContext.BaseDirectory, file);
+				var xfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				var xpath = Path.Combine(AppContext.BaseDirectory, xfile);
 				c.IncludeXmlComments(xpath);
 			});
 

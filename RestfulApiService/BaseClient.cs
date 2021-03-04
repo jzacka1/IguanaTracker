@@ -34,7 +34,12 @@ namespace RestfulApiService
 
         public T Get<T>(IRestRequest request) where T : new(){
             var response = Execute<T>(request);
-            return response.StatusCode == System.Net.HttpStatusCode.OK ? response.Data : default;
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return response.Data;
+            }
+
+            return default(T);
         }
     }
 }

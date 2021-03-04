@@ -9,7 +9,7 @@ namespace IguanaTracker.Data.Helpers
 		//Fetch epoch skills
 		public static int GetEpochSeconds()
 		{
-			var t = DateTime.Now - new DateTime(1970, 1, 1);
+			TimeSpan t = DateTime.Now - new DateTime(1970, 1, 1);
 			return (int)t.TotalSeconds;
 		}
 	}

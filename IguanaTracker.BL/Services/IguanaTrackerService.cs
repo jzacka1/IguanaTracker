@@ -17,25 +17,25 @@ namespace IguanaTracker.BL.Services
 
 		public void Add(Iguana item)
 		{
-			Db.Add(item);
-			Db.SaveChanges();
+			db.Add(item);
+			db.SaveChanges();
 		}
 
 		public void DeleteById(int id)
 		{
 			Iguana iguana = GetById(id);
-			Db.Iguanas.Remove(iguana);
-			Db.SaveChanges();
+			db.Iguanas.Remove(iguana);
+			db.SaveChanges();
 		}
 
 		public List<Iguana> GetAll()
 		{
-			return Db.Iguanas.ToList<Iguana>();
+			return db.Iguanas.ToList<Iguana>();
 		}
 
 		public async Task<List<Iguana>> GetAllAsync()
 		{
-			return await Db.Iguanas.ToListAsync<Iguana>();
+			return await db.Iguanas.ToListAsync<Iguana>();
 		}
 
 		public List<Iguana> GetReverse()
@@ -60,21 +60,21 @@ namespace IguanaTracker.BL.Services
 		}
 
 		public List<Iguana> GetAmount(int count){
-			return Db.Iguanas
+			return db.Iguanas
 							.Take(count)
 							.ToList<Iguana>();
 		}
 
 		public async Task<List<Iguana>> GetAmountAsync(int count)
 		{
-			return await Db.Iguanas
+			return await db.Iguanas
 								.Take(count)
 								.ToListAsync();
 		}
 
 		public List<Iguana> GetAmountReverse(int count)
 		{
-			var list = Db.Iguanas
+			var list = db.Iguanas
 							.Take(count)
 							.ToList<Iguana>();
 
@@ -97,12 +97,12 @@ namespace IguanaTracker.BL.Services
 
 		public List<Iguana> GetByCity(string city)
 		{
-			return Db.Iguanas.Where(i => i.City.ToLower() == city.ToLower()).ToList<Iguana>();
+			return db.Iguanas.Where(i => i.City.ToLower() == city.ToLower()).ToList<Iguana>();
 		}
 
 		public List<Iguana> GetByDate(DateTime date)
 		{
-			return Db.Iguanas.Where(i => i.DatePosted.Date == date.Date).ToList<Iguana>();
+			return db.Iguanas.Where(i => i.DatePosted.Date == date.Date).ToList<Iguana>();
 		}
 
 		public List<Iguana> GetByDateTime(DateTime datetime)
@@ -112,7 +112,7 @@ namespace IguanaTracker.BL.Services
 
 		public Iguana GetById(int id)
 		{
-			return Db.Iguanas.Find(id);
+			return db.Iguanas.Find(id);
 		}
 
 		public List<Iguana> GetReverseSortByDate()

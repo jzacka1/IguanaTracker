@@ -15,24 +15,26 @@ namespace IguanaTracker.Data
 			{
 				CoordinatesViewModel vm = new CoordinatesViewModel();
 
-				//Fetch geo-coordinates from file
-				using var reader = new ExifReader(file);
-				reader.GetTagValue(ExifTags.GPSLatitude, out double[] latitude);
-				reader.GetTagValue(ExifTags.GPSLongitude, out double[] longitude);
-				reader.GetTagValue(ExifTags.GPSLatitudeRef, out string latitudeRef);
-				reader.GetTagValue(ExifTags.GPSLongitudeRef, out string longitudeRef);
-
-				if ((latitude != null && latitudeRef != null) &&
-				    (longitude != null && longitudeRef != null))
+				//Fetch geocoordinates from file
+				using (var reader = new ExifReader(file))
 				{
-					vm = Helpers.CoordinatesHelper.ToCoordinatesWithRefs(latitude, longitude, latitudeRef, longitudeRef);
+					reader.GetTagValue(ExifTags.GPSLatitude, out double[] latitude);
+					reader.GetTagValue(ExifTags.GPSLongitude, out double[] longitude);
+					reader.GetTagValue(ExifTags.GPSLatitudeRef, out string latitudeRef);
+					reader.GetTagValue(ExifTags.GPSLongitudeRef, out string longitudeRef);
+
+					if ((latitude != null && latitudeRef != null) &&
+						(longitude != null && longitudeRef != null))
+					{
+						vm = Helpers.CoordinatesHelper.ToCoordinatesWithRefs(latitude, longitude, latitudeRef, longitudeRef);
+					}
 				}
 
 				return vm;
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				// ignored
+				
 			}
 
 			return null;

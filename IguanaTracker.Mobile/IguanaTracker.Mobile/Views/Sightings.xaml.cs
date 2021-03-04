@@ -17,6 +17,7 @@ namespace IguanaTracker.Mobile.Views
 	public partial class Sightings : ContentPage
 	{
 		private readonly IIguanaApiService _iguanaApiService;
+		private readonly SightingsViewModel _sightingsViewModel;
 
 		public Sightings()
 		{
@@ -24,8 +25,8 @@ namespace IguanaTracker.Mobile.Views
 
 			AppContainer.Initialize();
 			_iguanaApiService = AppContainer.Resolve<IIguanaApiService>();
-			var sightingsViewModel = AppContainer.Resolve<SightingsViewModel>();
-			this.BindingContext = sightingsViewModel;
+			_sightingsViewModel = AppContainer.Resolve<SightingsViewModel>();
+			this.BindingContext = _sightingsViewModel;
 		}
 	}
 }

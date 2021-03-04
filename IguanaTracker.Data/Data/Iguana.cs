@@ -13,11 +13,11 @@ namespace IguanaTracker.Data.Data
     {
         public Iguana() {
 
-            Name = "IguanaSighting_";
+            name = "IguanaSighting_";
             directory = "sightings/";
 
             DatePosted = DateTime.Now;
-            ImageFileName = $"{Name}{Helpers.TimeHelper.GetEpochSeconds()}.{ImageFormat.Jpg}";
+            ImageFileName = String.Format("{0}{1}.{2}", name, Helpers.TimeHelper.GetEpochSeconds(), imageFormat.jpg.ToString());
         }
 
         private IFormFile _imageData;
@@ -27,24 +27,24 @@ namespace IguanaTracker.Data.Data
 
         public string ImageFileName { get; set; }
         public string Directory { 
-            get => directory;
+            get { return directory; }
             set { }
         }
 
         //Fetch image and its geocoordinates
         [NotMapped]
-        public IFormFile ImageData {
-			get => _imageData;
+        public IFormFile _ImageData {
+			get { return _imageData; }
 			set
 			{
                 _imageData = (IFormFile)value;
 
                 //Fetch coordinates of uploaded file
-                var coords = GetGeoCoordinatesOfFile(_imageData.OpenReadStream());
+                var coord = GetGeoCoordinatesOfFile(_imageData.OpenReadStream());
 
                 //Check if coordinates are not null.
-                Latitude = coords?.Latitude ?? Latitude;
-                Longitude = coords?.Longitude ?? Longitude;
+                Latitude = coord == null ? Latitude : coord.latitude;
+                Longitude = coord == null ? Longitude : coord.longitude;
 
                 //Img = Helpers.Helpers.ImageToByteArrayAsync((IFormFile)value);
             }

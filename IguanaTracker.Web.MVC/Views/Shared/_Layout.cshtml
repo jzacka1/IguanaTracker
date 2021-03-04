@@ -9,8 +9,6 @@
 	<link runat="server" rel="shortcut icon" href="IguanaTrackerIcon.ico" type="image/x-icon" />
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" />
-	<link href="~/lib/font-awesome/css/fontawesome.css" rel="stylesheet" />
-	<link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
 </head>
 <body>
 	<header>
@@ -30,17 +28,10 @@
 							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><b>Home</b></a>
 						</li>
 						<li aria-label="Link to sightings page" class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sightings"><b>Sightings</b></a>			
+							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sightings"><b>Sightings</b></a>
 						</li>
-						<li aria-label="Dropdown menu linking to other pages" class="nav-item dropdown">
-							<a class="nav-link text-dark dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<b>About </b>
-								@*<i class="fa fa-caret-down"></i>*@
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item text-dark" aria-label="Link to about page" asp-area="" asp-controller="Home" asp-action="Instructions"><b>Instructions</b></a>
-								<a class="dropdown-item text-dark" aria-label="Link to companies page" asp-area="" asp-controller="Home" asp-action="Companies"><b>Companies</b></a>
-							</div>
+						<li aria-label="Link to sightings page" class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About"><b>About</b></a>
 						</li>
 						<li aria-label="Link to privacy page" class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><b>Privacy</b></a>
@@ -64,8 +55,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-	<script src="~/lib/font-awesome/js/fontawesome.js"></script>
-	<script src="~/lib/font-awesome/js/all.js"></script>
-@await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -14,18 +14,18 @@ namespace IguanaTracker.Mobile.ViewModels
 	{
 		public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
-		bool _isBusy = false;
+		bool isBusy = false;
 		public bool IsBusy
 		{
-			get => _isBusy;
-			set => SetProperty(ref _isBusy, value);
+			get { return isBusy; }
+			set { SetProperty(ref isBusy, value); }
 		}
 
-		private string _title = string.Empty;
+		string title = string.Empty;
 		public string Title
 		{
-			get => _title;
-			set => SetProperty(ref _title, value);
+			get { return title; }
+			set { SetProperty(ref title, value); }
 		}
 
 		protected bool SetProperty<T>(ref T backingStore, T value,

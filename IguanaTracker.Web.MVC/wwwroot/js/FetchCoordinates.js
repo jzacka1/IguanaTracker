@@ -25,7 +25,7 @@ function showPosition(position) {
 			$("#State").val(state);
 		},
 		error: function (status, error) {
-			alert("Result: " + status + " " + error);
+			alert("Result: " + status + " " + error)
 		}
 	});
 
