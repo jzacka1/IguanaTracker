@@ -13,9 +13,17 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '**IguanaTracker.Test/*.csproj'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: |
+      **IguanaTracker.Data/*.csproj
+      **IguanaTracker.BL/*.csproj
+      **IguanaTracker.Web.MVC/*.csproj
