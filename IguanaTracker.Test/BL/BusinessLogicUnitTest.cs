@@ -25,7 +25,7 @@ namespace IguanaTracker.Test.BL
 			var list = _iguanaTrackerService.GetAll();
 
 			//Assert
-			Assert.Equal(2, list.Count);
+			Assert.Equal(3, list.Count);
 		}
 	}
 }
