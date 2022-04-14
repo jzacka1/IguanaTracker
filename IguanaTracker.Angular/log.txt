@@ -35,3 +35,4 @@
 {"message":"No project detected for extracting metadata.","source":"MetadataCommand.ExtractMetadata","date_time":"2022-04-03T07:57:32.7606027Z","message_severity":"warning","correlation_id":"C5A187AC-1167-4A22-92FA-37BB4AB1E737.1.1.3"}
 {"message":"No project detected for extracting metadata.","source":"MetadataCommand.ExtractMetadata","date_time":"2022-04-03T08:00:35.6497677Z","message_severity":"warning","correlation_id":"65B09C19-91AF-44A1-9D92-EDDDA2197C85.1.1.3"}
 {"message":"No project detected for extracting metadata.","source":"MetadataCommand.ExtractMetadata","date_time":"2022-04-03T08:02:55.1828971Z","message_severity":"warning","correlation_id":"B29B04AB-90E3-4929-9CC8-9AFBEF239DC0.1.1.3"}
+{"message":"No project detected for extracting metadata.","source":"MetadataCommand.ExtractMetadata","date_time":"2022-04-14T05:24:41.1352394Z","message_severity":"warning","correlation_id":"15A5FE8C-B004-4B1D-AF2A-1C944C46B855.1.1.3"}
