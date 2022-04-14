@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IguanaTracker.BL
 {
-	public class BusinessServiceDbAccess : IDisposable
+	public abstract class BusinessServiceDbAccess : IDisposable
 	{
 		public readonly FloridaIguanaTrackerDBContext Db;
 

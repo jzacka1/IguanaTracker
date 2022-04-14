@@ -5,7 +5,12 @@
 	<meta name="description" content="Florida Iguana Tracker">
 	<meta name="keywords" content="Iguana, Tracking, Tracker, Florida, photos, locations">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - Florida Iguana Tracker</title>
+	@if(@ViewData["Title"] != null){
+		<title>@ViewData["Title"] - Florida Iguana Tracker</title>
+	}
+	else{
+		<title>Florida Iguana Tracker</title>
+	}
 	<link runat="server" rel="shortcut icon" href="IguanaTrackerIcon.ico" type="image/x-icon" />
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" />

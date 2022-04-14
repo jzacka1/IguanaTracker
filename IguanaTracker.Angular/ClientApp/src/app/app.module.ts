@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -14,7 +16,8 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 
-@NgModule({
+@
+NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
@@ -38,7 +41,9 @@ import { InstructionsComponent } from './instructions/instructions.component';
       { path: 'instructions', component: InstructionsComponent },
       { path: 'sightings', component: SightingsComponent },
       { path: 'privacy', component: PrivacyComponent },
-    ])
+    ]),
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

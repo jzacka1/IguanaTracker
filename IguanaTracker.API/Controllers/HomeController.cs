@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
 using IguanaTracker.API.Interfaces;
 using IguanaTracker.BL.Services;
 using IguanaTracker.BL.Services.Interfaces;
 using IguanaTracker.Data.Data;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,14 +19,22 @@ namespace IguanaTracker.API.Controllers
 	[ApiController]
 	public class HomeController : ControllerBase
 	{
-		private readonly ILoggerService _logger;
-		private readonly IIguanaTrackerService _iguanaTracker;
+		private readonly IWebHostEnvironment _hostEnvironment;
 
-		public HomeController(IIguanaTrackerService iguanaTracker,
-								ILoggerService logger)
+		private readonly ILogger<HomeController> _logger;
+		private readonly IIguanaTrackerService _iguanaTrackerService;
+
+		private readonly AzureBlobService _azureBlobService;
+
+		public HomeController(IWebHostEnvironment hostEnvironment,
+								ILogger<HomeController> logger,
+								IIguanaTrackerService iguanaTrackerService,
+								BlobServiceClient blobServiceClient)
 		{
+			_hostEnvironment = hostEnvironment;
 			_logger = logger;
-			_iguanaTracker = iguanaTracker;
+			_iguanaTrackerService = iguanaTrackerService;
+			_azureBlobService = new AzureBlobService(blobServiceClient, "iguana-image-container");
 		}
 
 		// GET: api/<HomeController>
@@ -34,7 +45,7 @@ namespace IguanaTracker.API.Controllers
 		[HttpGet]
 		public async Task<List<Iguana>> Get()
 		{
-			return await _iguanaTracker.GetAllAsync();
+			return await _iguanaTrackerService.GetAllAsync();
 			//return new string[] { "value1", "value2" };
 		}
 
@@ -42,14 +53,14 @@ namespace IguanaTracker.API.Controllers
 		[HttpGet("{id}")]
 		public Iguana Get(int id)
 		{
-			return _iguanaTracker.GetById(id);
+			return _iguanaTrackerService.GetById(id);
 		}
 
 		// POST api/<HomeController>
 		[HttpPost]
 		public void Post([FromBody] Iguana item)
 		{
-			_iguanaTracker.Add(item);
+			_iguanaTrackerService.Add(item);
 		}
 
 		// PUT api/<HomeController>/5
@@ -62,7 +73,7 @@ namespace IguanaTracker.API.Controllers
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
-			_iguanaTracker.DeleteById(id);
+			_iguanaTrackerService.DeleteById(id);
 		}
 	}
 }

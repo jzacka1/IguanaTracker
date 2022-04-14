@@ -17,6 +17,11 @@ namespace IguanaTracker.BL.Services
 			_blobServiceClient = blobServiceClient;
 		}
 
+		/// <summary>
+		/// Fetch blob container from Azure with the same name
+		/// </summary>
+		/// <param name="blobServiceClient">BlobClient Service parameter instantiated via dependency Injection</param>
+		/// <param name="containerName">Name of container within Azure Blob storage</param>
 		public AzureBlobService(BlobServiceClient blobServiceClient, string containerName)
 		{
 			_blobServiceClient = blobServiceClient;
@@ -24,22 +29,44 @@ namespace IguanaTracker.BL.Services
 			//_blobContainer.CreateIfNotExists(PublicAccessType.Blob);
 		}
 
+		/// <summary>
+		/// Fetch blob container from Azure with the same name
+		/// </summary>
+		/// <param name="containerName">Name of container in the Blob storage</param>
+		/// <returns>BlobContainerClient with the same name of container</returns>
 		public BlobContainerClient GetBlobContainer(string containerName){
 			return _blobServiceClient.GetBlobContainerClient(containerName);
 		}
 
+		/// <summary>
+		/// Upload to file to blob container
+		/// </summary>
+		/// <param name="file">file from the form</param>
+		/// <param name="fileName">Name of file to the new uploaded file</param>
+		/// <param name="blobHttpHeader">Set Http properties</param>
+		/// <returns>BlobClient where the file with the same name is located</returns>
 		public void UploadFileToStorage(IFormFile file, string fileName, BlobHttpHeaders blobHttpHeader){
 			GetBlobByFileName(fileName)
 			.Upload(file.OpenReadStream(), blobHttpHeader);
 		}
 
+		/// <summary>
+		/// Fetch a filename from the blob storage
+		/// </summary>
+		/// <param name="fileName">Name of file stored in the Blob storage</param>
+		/// <returns>BlobClient where the file with the same name is located</returns>
 		public BlobClient GetBlobByFileName(string fileName){
 			return _blobContainer.GetBlobClient(fileName);
 		}
 
-		public string GetFileLinkByName(string fileName)
+		/// <summary>
+		/// Fetch link to the file from the blob storage
+		/// </summary>
+		/// <param name="fileName">Name of file stored in the Blob storage</param>
+		/// <returns>Link to file</returns>
+		public Uri GetFileLinkByName(string fileName)
 		{
-			return GetBlobByFileName(fileName).Uri.ToString();
+			return GetBlobByFileName(fileName).Uri;
 		}
 	}
 }

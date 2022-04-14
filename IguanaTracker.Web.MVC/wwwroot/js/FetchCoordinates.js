@@ -13,7 +13,7 @@ function showPosition(position) {
 
 	$.ajax({
 		type: "GET",
-		url: "https://atlas.microsoft.com/search/address/reverse/json?api-version=1.0&subscription-key=ujITVgwO21SEd9QV0DDVs6PknOGpqpCASaQsA-TYsw0&language=en-US&entityType=Municipality",
+		url: "https://atlas.microsoft.com/search/address/reverse/json?api-version=1.0&subscription-key=BHcHezJyCywXkvo_mlpcCYsGdYepKIIVqKXSCvtu4vE&language=en-US&entityType=Municipality",
 		dataType: "json",
 		data: { query: lat + ", " + lng },
 		success: function (result, status) {

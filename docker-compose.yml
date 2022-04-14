@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  iguanatracker.web.mvc:
+    image: ${DOCKER_REGISTRY-}iguanatrackerwebmvc
+    build:
+      context: .
+      dockerfile: IguanaTracker.Web.MVC/Dockerfile
+  sql-server-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: JAMESPC
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Tycoon33!"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"

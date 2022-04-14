@@ -11,7 +11,7 @@ namespace IguanaTracker.Test.Data
 {
 	public class DataTesting
 	{
-		private FloridaIguanaTrackerDBContext _dbTest;
+		protected FloridaIguanaTrackerDBContext _dbTest;
 
 		public DataTesting(){
 

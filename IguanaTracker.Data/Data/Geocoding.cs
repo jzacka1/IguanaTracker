@@ -7,8 +7,16 @@ using System.Text;
 
 namespace IguanaTracker.Data
 {
+	/// <summary>
+	/// Handles geolocation values.
+	/// </summary>
 	public abstract class Geocoding
 	{
+		/// <summary>
+		/// Fetch coordinate values of file.
+		/// </summary>
+		/// <param name="Stream">file from the form</param>
+		/// <returns>Returns values in a CoordinatesViewModel</returns>
 		public CoordinatesViewModel GetGeoCoordinatesOfFile(Stream file)
 		{
 			try
@@ -16,7 +24,7 @@ namespace IguanaTracker.Data
 				CoordinatesViewModel vm = new CoordinatesViewModel();
 
 				//Fetch geo-coordinates from file
-				using var reader = new ExifReader(file);
+				var reader = new ExifReader(file);
 				reader.GetTagValue(ExifTags.GPSLatitude, out double[] latitude);
 				reader.GetTagValue(ExifTags.GPSLongitude, out double[] longitude);
 				reader.GetTagValue(ExifTags.GPSLatitudeRef, out string latitudeRef);

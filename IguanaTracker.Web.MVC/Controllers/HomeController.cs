@@ -49,7 +49,7 @@ namespace IguanaTracker.Web.MVC.Controllers
 				IguanaLinkViewModel temp = new IguanaLinkViewModel
 				{
 					Iguana = i,
-					Link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName)
+					Link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName).OriginalString
 				};
 				iguanaLinkVmLst.Add(temp);
 			}
@@ -95,7 +95,7 @@ namespace IguanaTracker.Web.MVC.Controllers
 				IguanaLinkViewModel temp = new IguanaLinkViewModel
 				{
 					Iguana = i,
-					Link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName)
+					Link = _azureBlobService.GetFileLinkByName(i.Directory + i.ImageFileName).OriginalString
 				};
 
 				iguanaLinkVmLst.Add(temp);

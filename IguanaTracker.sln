@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30611.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IguanaTracker.API", "IguanaTracker.API\IguanaTracker.API.csproj", "{E2E8C10E-DC61-4047-98FF-C56AC4EDD978}"
 EndProject
@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IguanaTracker.BL", "IguanaT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestfulApiService", "RestfulApiService\RestfulApiService.csproj", "{D0CABD83-9826-4E09-BE41-D0D28AB3E35E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IguanaTracker.Angular", "IguanaTracker.Angular\IguanaTracker.Angular.csproj", "{4910FB3C-2D0A-47A8-BA73-29F2048B0087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IguanaTracker.Angular", "IguanaTracker.Angular\IguanaTracker.Angular.csproj", "{4910FB3C-2D0A-47A8-BA73-29F2048B0087}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -145,6 +147,18 @@ Global
 		{4910FB3C-2D0A-47A8-BA73-29F2048B0087}.Release|iPhone.Build.0 = Release|Any CPU
 		{4910FB3C-2D0A-47A8-BA73-29F2048B0087}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{4910FB3C-2D0A-47A8-BA73-29F2048B0087}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Release|iPhone.Build.0 = Release|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{DD86D880-7423-4EC1-A7F6-CA594D78A2F6}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
