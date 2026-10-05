@@ -1,0 +1,6 @@
+@FloridaIguanaTracker.Api_HostAddress = http://localhost:5155
+
+GET {{FloridaIguanaTracker.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
