@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -22,10 +22,6 @@
     <ProjectReference Include="..\FloridaIguanaTracker.Application\FloridaIguanaTracker.Application.csproj" />
     <ProjectReference Include="..\FloridaIguanaTracker.Contracts\FloridaIguanaTracker.Contracts.csproj" />
     <ProjectReference Include="..\FloridaIguanaTracker.Infrastructure\FloridaIguanaTracker.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

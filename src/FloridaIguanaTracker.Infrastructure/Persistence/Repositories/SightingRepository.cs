@@ -27,13 +27,23 @@ namespace FloridaIguanaTracker.Infrastructure.Persistence.Repositories
                     cancellationToken);
         }
 
-        public async Task<IReadOnlyList<Sighting>> GetAllAsync(
+        public async Task<(IReadOnlyList<Sighting> Items, int TotalCount)> GetPagedAsync(
+            int page,
+            int pageSize,
             CancellationToken cancellationToken = default)
         {
-            return await _dbContext.Sightings
+            var query = _dbContext.Sightings
                 .AsNoTracking()
-                .OrderByDescending(x => x.ReportedAt)
+                .OrderByDescending(x => x.ReportedAt);
+
+            var totalCount = await query.CountAsync(cancellationToken);
+
+            var items = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync(cancellationToken);
+
+            return (items, totalCount);
         }
 
         public async Task AddAsync(

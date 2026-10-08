@@ -11,7 +11,9 @@ namespace FloridaIguanaTracker.Application.Sightings
             int id,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<Sighting>> GetAllAsync(
+        Task<(IReadOnlyList<Sighting> Items, int TotalCount)> GetPagedAsync(
+            int page,
+            int pageSize,
             CancellationToken cancellationToken = default);
 
         Task AddAsync(
