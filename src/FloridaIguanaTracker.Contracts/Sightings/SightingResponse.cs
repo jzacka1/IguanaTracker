@@ -4,7 +4,6 @@ using System.Text;
 
 namespace FloridaIguanaTracker.Contracts.Sightings
 {
-
     public record SightingResponse(
         int Id,
         DateTime ReportedAt,

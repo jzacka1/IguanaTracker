@@ -1,5 +1,6 @@
 ﻿using FloridaIguanaTracker.Application.Sightings;
 using FloridaIguanaTracker.Domain.Entities;
+using FloridaIguanaTracker.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,19 +29,52 @@ namespace FloridaIguanaTracker.Infrastructure.Persistence.Repositories
         }
 
         public async Task<(IReadOnlyList<Sighting> Items, int TotalCount)> GetPagedAsync(
-            int page,
-            int pageSize,
+            SightingQuery query,
             CancellationToken cancellationToken = default)
         {
-            var query = _dbContext.Sightings
-                .AsNoTracking()
-                .OrderByDescending(x => x.ReportedAt);
+            IQueryable<Sighting> sightings = _dbContext.Sightings
+                .AsNoTracking();
 
-            var totalCount = await query.CountAsync(cancellationToken);
+            if (!string.IsNullOrWhiteSpace(query.City))
+            {
+                var city = query.City.Trim();
 
-            var items = await query
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
+                sightings = sightings.Where(
+                    x => x.City == city);
+            }
+
+            if (query.FromDate.HasValue)
+            {
+                var fromDate = query.FromDate.Value;
+
+                sightings = sightings.Where(
+                    x => x.ReportedAt >= fromDate);
+            }
+
+            if (query.ToDate.HasValue)
+            {
+                var toDateExclusive = query.ToDate.Value.Date.AddDays(1);
+
+                sightings = sightings.Where(
+                    x => x.ReportedAt < toDateExclusive);
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.Search))
+            {
+                var search = query.Search.Trim();
+
+                sightings = sightings.Where(
+                    x => x.Description != null &&
+                         x.Description.Contains(search));
+            }
+
+            var totalCount = await sightings.CountAsync(cancellationToken);
+
+            var items = await sightings
+                .OrderByDescending(x => x.ReportedAt)
+                .ThenByDescending(x => x.Id)
+                .Skip((query.Page - 1) * query.PageSize)
+                .Take(query.PageSize)
                 .ToListAsync(cancellationToken);
 
             return (items, totalCount);

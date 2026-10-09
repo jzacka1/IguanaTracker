@@ -39,8 +39,12 @@ namespace FloridaIguanaTracker.Api.Controllers
 
         [HttpGet]
         public async Task<ActionResult<PagedResponse<SightingResponse>>> GetAll(
-            int page = 1,
-            int pageSize = 20,
+            [FromQuery] string? city,
+            [FromQuery] DateTime? fromDate,
+            [FromQuery] DateTime? toDate,
+            [FromQuery] string? search,
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 20,
             CancellationToken cancellationToken = default)
         {
             if (page < 1)
@@ -53,10 +57,24 @@ namespace FloridaIguanaTracker.Api.Controllers
                 return BadRequest("Page size must be between 1 and 100.");
             }
 
+            if (fromDate.HasValue &&
+                toDate.HasValue &&
+                fromDate.Value.Date > toDate.Value.Date)
+            {
+                return BadRequest("fromDate must be on or before toDate.");
+            }
+
+            var query = new SightingQuery(
+                City: city,
+                FromDate: fromDate,
+                ToDate: toDate,
+                Search: search,
+                Page: page,
+                PageSize: pageSize);
+
             var (sightings, totalCount) =
                 await _sightingRepository.GetPagedAsync(
-                    page,
-                    pageSize,
+                    query,
                     cancellationToken);
 
             var items = sightings
@@ -66,14 +84,12 @@ namespace FloridaIguanaTracker.Api.Controllers
             var totalPages = (int)Math.Ceiling(
                 totalCount / (double)pageSize);
 
-            var response = new PagedResponse<SightingResponse>(
+            return Ok(new PagedResponse<SightingResponse>(
                 items,
                 page,
                 pageSize,
                 totalCount,
-                totalPages);
-
-            return Ok(response);
+                totalPages));
         }
     }
 }
