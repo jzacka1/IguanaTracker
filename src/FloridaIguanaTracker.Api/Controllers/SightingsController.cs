@@ -2,6 +2,7 @@
 using FloridaIguanaTracker.Application.Sightings;
 using FloridaIguanaTracker.Contracts.Common;
 using FloridaIguanaTracker.Contracts.Sightings;
+using FloridaIguanaTracker.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -90,6 +91,30 @@ namespace FloridaIguanaTracker.Api.Controllers
                 pageSize,
                 totalCount,
                 totalPages));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<SightingResponse>> Create(
+            [FromBody] CreateSightingRequest request,
+            CancellationToken cancellationToken)
+        {
+            var sighting = new Sighting(
+                DateTime.UtcNow,
+                request.Latitude,
+                request.Longitude,
+                request.City.Trim(),
+                request.Description?.Trim());
+
+            await _sightingRepository.AddAsync(
+                sighting,
+                cancellationToken);
+
+            var response = sighting.ToResponse();
+
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = response.Id },
+                response);
         }
     }
 }

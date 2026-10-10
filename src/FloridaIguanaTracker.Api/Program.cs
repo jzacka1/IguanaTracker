@@ -16,14 +16,23 @@ builder.Services.AddDbContext<FloridaIguanaTrackerDbContext>(options =>
 builder.Services.AddScoped<ISightingRepository, SightingRepository>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Configure Swagger/OpenAPI
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    // Serve the generated Swagger as JSON endpoint
+    app.UseSwagger();
+
+    // Serve Swagger UI at /swagger
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Florida Iguana Tracker API v1");
+    });
 }
 
 app.UseHttpsRedirection();

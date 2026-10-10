@@ -5,6 +5,7 @@ using FloridaIguanaTracker.Contracts.Sightings;
 using FloridaIguanaTracker.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -198,5 +199,92 @@ namespace FloridaIguanaTracker.UnitTests.Controllers
             Assert.Equal(2, response.Page);
             Assert.Equal(20, response.PageSize);
         }
+
+
+        [Fact]
+        public async Task Create_ValidRequest_ReturnsCreatedResult()
+        {
+            // Arrange
+            var request = new CreateSightingRequest(
+                City: "Boca Raton",
+                Latitude: 26.3683,
+                Longitude: -80.1289,
+                Description: "Iguana sighting near a residential area.");
+
+            // Act
+            var result = await _controller.Create(
+                request,
+                CancellationToken.None);
+
+            // Assert
+            var createdResult = Assert.IsType<
+                CreatedAtActionResult>(result.Result);
+
+            var response = Assert.IsType<SightingResponse>(
+                createdResult.Value);
+
+            Assert.Equal("Boca Raton", response.City);
+            Assert.Equal(26.3683, response.Latitude);
+            Assert.Equal(-80.1289, response.Longitude);
+            Assert.Equal(
+                "Iguana sighting near a residential area.",
+                response.Description);
+
+            _repositoryMock.Verify(
+                repository => repository.AddAsync(
+                    It.Is<Sighting>(s =>
+                        s.City == "Boca Raton" &&
+                        s.Latitude == 26.3683 &&
+                        s.Longitude == -80.1289),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+
+        [Fact]
+        public async Task Create_ValidRequest_TrimsCityAndDescription()
+        {
+            // Arrange
+            var request = new CreateSightingRequest(
+                City: "  Boca Raton  ",
+                Latitude: 26.3683,
+                Longitude: -80.1289,
+                Description: "  Iguana near a park.  ");
+
+            // Act
+            await _controller.Create(request, CancellationToken.None);
+
+            // Assert
+            _repositoryMock.Verify(
+                repository => repository.AddAsync(
+                    It.Is<Sighting>(s =>
+                        s.City == "Boca Raton" &&
+                        s.Description == "Iguana near a park."),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Fact]
+        public async Task Create_ValidRequest_SetsReportedAtInUtc()
+        {
+            // Arrange
+            var request = new CreateSightingRequest(
+                City: "Boca Raton",
+                Latitude: 26.3683,
+                Longitude: -80.1289,
+                Description: "Test sighting.");
+
+            // Act
+            await _controller.Create(request, CancellationToken.None);
+
+            // Assert
+            _repositoryMock.Verify(
+                repository => repository.AddAsync(
+                    It.Is<Sighting>(s =>
+                        s.ReportedAt.Kind == DateTimeKind.Utc),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
     }
 }
